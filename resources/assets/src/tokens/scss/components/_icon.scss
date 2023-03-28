@@ -1,0 +1,29 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Icons Module Configuration
+ *
+ */
+
+@include component-set(icon, (
+    size: (
+        modifiers: 'badge' 'large' 'small',
+
+        badge: 10px,
+        default: size(400),
+        large: (size() + size(100)),
+        small: size(300)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function icon($key) {
+    @return component-get(icon $key);
+}

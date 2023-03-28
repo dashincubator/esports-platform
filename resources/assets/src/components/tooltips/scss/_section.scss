@@ -1,0 +1,12 @@
+&-section {
+    padding: tooltip(section padding);
+    white-space: nowrap;
+
+    &.--border-top {
+        @include modifiers(border(size modifiers), '&' '&-{r}') {
+            &:first-child {
+                border-top: unset;
+            }
+        }
+    }
+}

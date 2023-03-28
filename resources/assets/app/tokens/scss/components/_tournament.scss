@@ -1,0 +1,56 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Tournament
+ *
+ */
+
+@include token-set(tournament, (
+    bracket: (
+        column: (
+            // Margin Spacer Of Each Tournament Column
+            spacer: 24px,
+
+            // Total # Of Bracket Columns To Generate
+            // - 10 Columns = 2048 Team Bracket
+            total: 10,
+
+            // Width Of Each Tournament Column
+            width: 216px
+        ),
+
+        round: (
+            padding: section(margin-top default) 0
+        ),
+
+        row: (
+            // Margin Top Spacer Of Each Tournament Match
+            spacer: section(margin-top default)
+        ),
+
+        // Size Of Tournament Bracket Lines
+        size: 2px,
+
+        team: (
+            height: 48px,
+
+            perMatch: 2 4 8 12 16 24 32 64,
+
+            width: (
+                seed: size(700)
+            )
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function tournament($key) {
+    @return token-get(tournament $key);
+}

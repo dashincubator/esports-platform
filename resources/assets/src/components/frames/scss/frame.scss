@@ -1,0 +1,45 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Off Canvas Like Panels For Elements Within Canvas
+ *
+ */
+
+.frames {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    &--overflow {
+        overflow: visible;
+    }
+}
+
+.frame {
+    @include transition(opacity transform, frame(transition));
+    backface-visibility: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+
+    @include state(not-active) {
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        transform: translateX(#{frame(transform)});
+        top: 0;
+        z-index: -1;
+    }
+
+
+    &--noanimation {
+        transition: 0s;
+    }
+
+    &--reverse {
+        @include state(not-active) {
+            transform: translateX(- #{frame(transform)});
+        }
+    }
+}

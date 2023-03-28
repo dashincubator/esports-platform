@@ -1,0 +1,50 @@
+&-row {
+    @include apply-css(app(font default css));
+    border-radius: inherit;
+    padding: table(row padding default);
+    z-index: 1;
+
+    @include state(hover) {
+        z-index: 2;
+    }
+
+
+    &--border {
+        @each $color in table(row border modifiers) {
+            &-#{$color} {
+                box-shadow: table(row border width) 0 0 color($color) inset;
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+            }
+
+            &-gradient-#{$color} {
+                $increment: 0.08;
+                $min: 0.08;
+                $opacity: 1;
+
+                @if $color == 'black' {
+                    $increment: 0.024;
+                }
+
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+
+                @for $i from 1 through 100 {
+                    $opacity: $opacity - $increment;
+
+                    @if $opacity > $min {
+                        &[data-row='#{$i}'] {
+                            box-shadow: table(row border width) 0 0 color($color, $opacity) inset;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @each $size in table(header padding modifiers) {
+        &--#{$size} {
+            padding: table(row padding $size);
+        }
+    }
+}

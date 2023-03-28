@@ -1,0 +1,63 @@
+&--w {
+    bottom: 50%;
+    position: absolute;
+    right: calc(100% - #{$spacer});
+    transform: translateY(50%) scale($scale);
+    transform-origin: center right;
+
+    #{$active} {
+        transform: translate(- $spacer-double, 50%);
+    }
+
+    &.tooltip-content--noscale {
+        transform: translateY(50%);
+    }
+}
+
+&--wc {
+    bottom: 50%;
+    position: absolute;
+    right: calc(100% - #{$spacer});
+    transform: translateY(50%) scale($scale);
+    transform-origin: center right;
+
+    #{$active} {
+        transform: translate((- $spacer-double), 50%);
+    }
+
+    &.tooltip-content--noscale {
+        transform: scale(1);
+    }
+}
+
+&--wn {
+    position: absolute;
+    right: calc(100% - #{$spacer});
+    top: $spacer;
+    transform: scale($scale);
+    transform-origin: top right;
+
+    #{$active} {
+        transform: translate((- $spacer-double), (- $spacer));
+    }
+
+    &.tooltip-content--noscale {
+        transform: scale(1);
+    }
+}
+
+&--ws {
+    bottom: $spacer;
+    position: absolute;
+    right: calc(100% - #{$spacer});
+    transform: scale($scale);
+    transform-origin: bottom right;
+
+    #{$active} {
+        transform: translate((- $spacer-double), $spacer);
+    }
+
+    &.tooltip-content--noscale {
+        transform: scale(1);
+    }
+}

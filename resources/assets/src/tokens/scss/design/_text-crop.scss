@@ -1,0 +1,79 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text Crop Settings Dependent On Font Family
+ *
+ *  Use 'http://text-crop.eightshapes.com/' To Update When Changing Root Font
+ *  Family.
+ *
+ */
+
+@include token-set(text-crop, (
+    top: 2,
+    bottom: 2,
+    font-size: 8,
+    line-height: 1.2
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+@mixin text-crop($input: null, $crop: null) {
+    // Define Line Height
+    $line-height: line-height-filter($input);
+
+    // Filter Specific Crop Directions
+    @if list-contains($crop, first-child last-child) {
+        @if list-contains($crop, first-child) {
+            &-both,
+            &-top {
+                @include text-crop($line-height, top);
+            }
+        }
+
+        @if list-contains($crop, last-child) {
+            &-both,
+            &-bottom {
+                @include text-crop($line-height, bottom);
+            }
+        }
+    }
+
+    // Handle Everything Else
+    @else {
+        $top-crop: token-get(text-crop top);
+        $bottom-crop: token-get(text-crop bottom);
+        $crop-font-size: token-get(text-crop font-size);
+        $crop-line-height: token-get(text-crop line-height);
+
+        $dynamic-top-crop: max(($top-crop + ($line-height - $crop-line-height) * ($crop-font-size / 2)), 0) / $crop-font-size;
+        $dynamic-bottom-crop: max(($bottom-crop + ($line-height - $crop-line-height) * ($crop-font-size / 2)), 0) / $crop-font-size;
+
+        @if $crop == null or not list-contains($crop, both top bottom) {
+            $crop: (both,);
+        }
+
+        @if list-contains($crop, both top)  {
+            &::before {
+                @include size(0);
+                content: '';
+                display: block;
+                margin-bottom: -#{$dynamic-top-crop}em;
+            }
+        }
+
+        @if list-contains($crop, both bottom)  {
+            &::after {
+                @include size(0);
+                content: '';
+                display: block;
+                margin-top: -#{$dynamic-bottom-crop}em;
+            }
+        }
+    }
+}

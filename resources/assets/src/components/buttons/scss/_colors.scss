@@ -1,0 +1,465 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Button Color Variations
+ *
+ *  Import Within Button Stylesheet To Retain Class Inheritance
+ *
+ */
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Default Button Color Properties
+ *
+ */
+
+// Pseudo Element Box Shadow
+&::before {
+    @include position(absolute, full);
+    @include transition(box-shadow opacity);
+    border-radius: inherit;
+    box-shadow: box-shadow(500);
+    content: '';
+    opacity: 0;
+    z-index: 0;
+}
+
+@include state(active) {
+    &::before {
+        opacity: 1;
+    }
+}
+
+@include state(hover) {
+    &::before {
+        box-shadow: box-shadow(500);
+        opacity: 1;
+    }
+}
+
+@include state(pressed) {
+    &::before {
+        opacity: 0;
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Black Buttons
+ *
+ *  When Modifier Is Used With A Brand Color The Default Button State Uses The
+ *  Properties Assigned By '--black'.
+ *
+ *  On 'active'/'hover'/'pressed' State The Brand Colors Properties Take Over.
+ *
+ */
+
+&--black {
+    @include button-color(color('black'), color('black' 300), color('black' 500));
+    @include button-modifier-border(color('black'));
+
+    &.button--border {
+        @include state(highlight) {
+            color: color('white');
+        }
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Button Group Themeing
+ *
+ *  'default' / 'hover' / 'pressed' States Are Replaced By The Group Color
+ *  When Using The Following Button Group Modifiers.
+ *
+ *  The Button's Modifier Colors Take Over On Button State 'active'.
+ *
+ *  Desired Result:
+ *  - Toggle-able Buttons
+ *
+ */
+
+&-group--text,
+&-scroller--text {
+    .button {
+        @include state(default) {
+            color: button(color manual text default);
+        }
+    }
+}
+
+@each $color in 'black' 'grey' 'white' {
+    $default: color($color 400);
+    $hover:   color($color 300);
+    $pressed: color($color 500);
+
+    $text-key: if($color == 'black', 'white', 'text');
+
+    &-group--#{$color},
+    &-scroller--#{$color} {
+        .button {
+            background-color: $default;
+            border-color: $default;
+            color: button(color manual $text-key default);
+
+            @include state(hover) {
+                background-color: $hover;
+                border-color: $hover;
+                color: button(color manual $text-key highlight);
+            }
+
+            @include state(pressed) {
+                background-color: $pressed;
+                border-color: $pressed;
+                color: button(color manual $text-key pressed);
+            }
+        }
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Brand Colors
+ *
+ */
+
+@each $color in button(color modifiers) {
+    @if (type-of(color($color)) == map) {
+        @each $name, $hex in color($color) {
+            $amount: if($name == snapchat, 1.6%, 3.2%);
+            $invert: if($name == snapchat, false, true);
+
+            &--#{$name} {
+                // Instagram's Button Color Styles Defined Below
+                @if $color != instagram {
+                    @include button-color($hex, lighten($hex, $amount), darken($hex, $amount), $invert);
+                }
+
+                @include button-modifier-black();
+                @include button-modifier-border($hex);
+            }
+        }
+    }
+    @else {
+        $default:   color($color 400);
+        $highlight: color($color 300);
+        $pressed:   color($color 500);
+
+        &--#{$color} {
+            @include button-color($default, $highlight, $pressed);
+            @include button-modifier-black();
+            @include button-modifier-border($default);
+
+            &.button--faded {
+                background-color: lighten($default, 32%);
+                color: if($color == 'green', darken($default, 20%), $default);
+            }
+        }
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Instagram Button
+ *
+ *  Social Button Loop Above Uses The Fallback Instagram Hex Code Defined
+ *  At 'color(misc instagram)'
+ *
+ *  Styles Below Use Instagram's Gradient When Possible
+ *
+ */
+
+&--instagram {
+    background-color: color(instagram 400);
+    color: button(color manual 'white' default);
+
+    @include state(highlight) {
+        background-color: color(instagram 300);
+        color: button(color manual 'white' highlight);
+    }
+    @include state(pressed) {
+        background-color: color(instagram 500);
+        color: button(color manual 'white' pressed);
+    }
+
+    &:not(.button--grey):not(.button--transparent):not(.button--white) {
+        svg * {
+            fill: currentColor;
+        }
+    }
+
+    &.button--black {
+        &::after {
+            @include position(absolute, full);
+            background-color: color('black');
+            border-radius: inherit;
+            content: '';
+            z-index: -1;
+        }
+    }
+
+    &.button--border,
+    &.button--ghost,
+    &.button--shadow {
+        $highlight: lighten(color(misc instagram), 8%);
+        $pressed:   color(misc instagram);
+
+        @include state(highlight) {
+            background-color: $highlight;
+            border-color: $highlight;
+            color: button(color manual 'white' default);
+        }
+
+        @include state(pressed) {
+            background-color: $pressed;
+            border-color: $pressed;
+            color: button(color manual 'white' default);
+        }
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Snapchat Button
+ *
+ *  Ghost Logo Needs A Black Outline
+ *
+ */
+
+&--snapchat {
+    .icon {
+        color: color('black');
+    }
+
+    // Except For Default Ghost State
+    // - Ghost Needs To Match White Ghost Color
+    &.button--ghost {
+        @include state(default) {
+            .icon {
+                color: color('white');
+            }
+        }
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Grey/White Buttons
+ *
+ *  When The Following Modifiers Are Used On Brand/Social Buttons The
+ *  Background + Border Colors Are Grey/White And The Brand/Social
+ *  Colors Are Used As The Text Color.
+ *
+ */
+
+@each $color in 'grey' 'white' {
+    $default:   color($color 400);
+    $highlight: color($color 300);
+    $pressed:   color($color 500);
+
+    &--#{$color} {
+        background-color: $default;
+        border-color: $default;
+
+        @include state(highlight) {
+            background-color: $highlight;
+            border-color: $highlight;
+        }
+
+        @include state(pressed) {
+            background-color: $pressed;
+            border-color: $pressed;
+        }
+
+        @include button-modifier-border($default);
+
+        &.button--ghost {
+            @include state(hover) {
+                color: button(color manual text highlight);
+            }
+
+            @include state(active pressed) {
+                color: button(color manual text pressed);
+            }
+        }
+
+        &.button--processing {
+            @include loading(button(color manual text default));
+        }
+
+        &.button--transparent {
+            color: $default;
+
+            @include state(hover) {
+                color: $highlight;
+            }
+
+            @include state(active pressed) {
+                color: $pressed;
+            }
+        }
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Default Brand Color Modifiers
+ *
+ *  Each Modifier Is A Variation Of A Transparent Button Background With Colored
+ *  Borders Or Text.
+ *
+ *  On 'hover'/'pressed' State The Brand Colors Properties Take Over.
+ *
+ */
+
+&--border,
+&--ghost,
+&--outline,
+&--shadow {
+    border-style: solid;
+    border-width: button(border size default);
+
+    @each $size in button(border size modifiers) {
+        &-#{$size} {
+            border-style: solid;
+            border-width: button(border size $size);
+        }
+    }
+
+    &-dashed {
+        border-style: dashed;
+    }
+
+    &-dotted {
+        border-style: dotted;
+    }
+}
+
+&--border,
+&--ghost,
+&--shadow {
+    &,
+    &-small {
+        background-color: transparent;
+    }
+}
+
+&--ghost {
+    &,
+    &-small {
+        border-color: button(color manual 'white' default);
+        color: button(color manual 'white' default);
+    }
+}
+
+&--shadow {
+    &,
+    &-small {
+        border-color: color('black');
+        color: color('black');
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Transparent Button Background With Modifier Text Color
+ *
+ */
+
+&--clear {
+    background-color: transparent;
+}
+
+&--transparent {
+    background-color: transparent;
+    box-shadow: none;
+
+    @include state(highlight active pressed) {
+        background-color: transparent;
+
+        &::before {
+            opacity: 0;
+        }
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Button Without Box Shadow
+ *
+ */
+
+&--basic {
+    &::before {
+        display: none;
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  'More' Button
+ *  - Primarily Used By Tables, Links, etc.
+ *
+ */
+
+&--more {
+    border-radius: 0;
+    height: 100%;
+
+    // Hide Box Shadow
+    &::before {
+        display: none;
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Button Processing Color/Theme
+ *
+ */
+
+&--processing {
+    @include loading();
+    color: transparent;
+    pointer-events: none;
+
+    > * {
+        opacity: 0;
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Non Interactive Buttons
+ *
+ */
+
+&--static {
+    pointer-events: none;
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Use Text Color On Default State
+ *
+ */
+
+&--text {
+    @include state(default) {
+        color: button(color manual text default);
+    }
+}

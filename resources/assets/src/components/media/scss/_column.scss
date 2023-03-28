@@ -1,0 +1,38 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Vertical Video List
+ *
+ *  Import Within Media Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-column {
+    position: relative;
+    width: 100%;
+
+
+    .media {
+        flex-direction: row;
+        margin-top: media(column media margin-top);
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &-footer {
+            margin-top: -2px;
+            padding: 1px 0 0 media(column media footer padding-left);
+            width: media(column media width footer);
+        }
+
+        &-thumbnail {
+            width: media(column media width thumbnail);
+        }
+
+        &-title {
+            margin: 0 0 media(column media title margin-bottom);
+            padding: 0;
+        }
+    }
+}

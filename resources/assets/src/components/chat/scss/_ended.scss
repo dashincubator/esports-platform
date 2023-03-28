@@ -1,0 +1,17 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Chat Message Ended Block
+ *
+ */
+
+&-ended {
+    background-color: chat(background);
+    border: chat(border size) chat(border style) app(border color default);
+    border-radius: border-radius();
+    margin-top: chat(message margin-top);
+    padding: chat(ended padding);
+    position: relative;
+    text-align: center;
+    width: 100%;
+}

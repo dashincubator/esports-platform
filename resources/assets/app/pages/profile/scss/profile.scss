@@ -1,0 +1,90 @@
+.profile {
+    $avatar: 180px;
+    $breakpoint: 800px;
+    $spacer: size(600);
+
+    &-avatar,
+    &-banner {
+        background-color: color('black' 500);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: border-radius(600);
+        position: relative;
+    }
+
+    &-avatar {
+        @include size($avatar);
+        bottom: (- $spacer);
+        box-shadow: 0 0 0 border-size(500) color('grey'), box-shadow(500);
+        z-index: 9;
+
+        @include breakpoint(min-width, $breakpoint) {
+            left: $spacer;
+            position: absolute;
+        }
+
+        @include breakpoint(max-width, $breakpoint) {
+            @include position(absolute, horizontal);
+        }
+
+        &-form {
+            @include size(100%);
+            border-radius: inherit;
+        }
+
+        &-premium {
+            @include position(absolute, null null size() size());
+        }
+    }
+
+    &-banner {
+        @include size(100%, 400px);
+        background-color: color('black' 500);
+
+        &--organizer {
+            min-height: 320px;
+            padding-top: 32%;
+        }
+
+        &-avatar {
+            height: 100%;
+        }
+    }
+
+    &-container {
+        width: 100%;
+
+        @include breakpoint(min-width, $breakpoint) {
+            padding: 0 $spacer;
+        }
+    }
+
+    &-header {
+        padding-top: $spacer;
+
+        &,
+        &-nav {
+            margin-top: $spacer + size(200);
+        }
+
+        &-section {
+            margin-top: $spacer;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &--description,
+            &--slug {
+                margin-top: $spacer - size(200);
+            }
+
+            &--bio {
+                @include breakpoint(min-width, $breakpoint) {
+                    width: 90%;
+                }
+            }
+        }
+    }
+}

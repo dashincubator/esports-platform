@@ -1,0 +1,60 @@
+.--absolute {
+    @mixin css($value) {
+        @include position(absolute, $value);
+
+        @each $breakpoint in app(breakpoints) {
+            @include breakpoint(max-width, $breakpoint) {
+                &-#{$breakpoint} {
+                    @include position(absolute, $value);
+                }
+            }
+        }
+    }
+
+    @mixin direction($direction) {
+        &-#{$direction} {
+            #{$direction}: 0;
+
+            @each $breakpoint in app(breakpoints) {
+                @include breakpoint(max-width, $breakpoint) {
+                    &-#{$breakpoint} {
+                        #{$direction}: 0;
+                    }
+                }
+            }
+        }
+    }
+
+
+    &-center {
+        @include css(center);
+    }
+
+    &-full {
+        @include position(absolute, full);
+    }
+
+    &-horizontal {
+        &,
+        &-bottom,
+        &-top {
+            @include css(horizontal);
+        }
+
+        @each $direction in 'bottom' 'top' {
+            @include direction($direction);
+        }
+    }
+
+    &-vertical {
+        &,
+        &-left,
+        &-right {
+            @include css(vertical);
+        }
+
+        @each $direction in 'left' 'right' {
+            @include direction($direction);
+        }
+    }
+}

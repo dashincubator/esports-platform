@@ -1,0 +1,24 @@
+form {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+input,
+button,
+select,
+textarea {
+    background: transparent;
+    border-radius: 0;
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+
+    &,
+    &:focus,
+    &:hover,
+    &:active {
+        outline: none;
+    }
+}

@@ -1,0 +1,58 @@
+&-item {
+    flex: 0 0 auto;
+    position: relative;
+
+
+    @each $direction in 'left' 'right' {
+        &--padding-#{$direction} {
+            padding-#{$direction}: last(table(row padding default));
+
+            @each $size in table(row padding modifiers) {
+                @at-root .table-header--#{$size} & {
+                    padding-#{$direction}: last(table(row padding $size));
+                }
+
+                @at-root .table-row--#{$size} & {
+                    padding-#{$direction}: last(table(row padding $size));
+                }
+            }
+        }
+    }
+
+    &--padding-horizontal {
+        padding-left: last(table(row padding default));
+        padding-right: last(table(row padding default));
+
+        @each $size in table(row padding modifiers) {
+            @at-root .table-header--#{$size} & {
+                padding-left: last(table(row padding $size));
+                padding-right: last(table(row padding $size));
+            }
+
+            @at-root .table-row--#{$size} & {
+                padding-left: last(table(row padding $size));
+                padding-right: last(table(row padding $size));
+            }
+        }
+    }
+
+    &--width {
+        width: table(item width default);
+
+        &-fill {
+            flex: 1 1 auto;
+            min-width: 0;
+
+            .table--scroller &,
+            .table--tooltip & {
+                min-width: 240px;
+            }
+        }
+
+        @each $size in table(item width modifiers) {
+            &-#{$size} {
+                width: table(item width $size);
+            }
+        }
+    }
+}

@@ -1,0 +1,75 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Media Module Configuration
+ *
+ */
+
+@include component-set(media, (
+    // '.media-column .media'
+    column: (
+        media: (
+            margin-top: size(200),
+
+            footer: (
+                // Spacer Between Media Details And Thumbnail
+                padding-left: size(300),
+            ),
+
+            title: (
+                margin-bottom: size(100)
+            ),
+
+            width: (
+                footer: 56%,
+                thumbnail: 44%
+            )
+        )
+    ),
+
+    // 'media-details'
+    details: (
+        margin-top: 2px
+    ),
+
+    // 'media-duration'
+    duration: (
+        padding: size(100) size(200)
+    ),
+
+    // 'media-footer'
+    footer: (
+        padding-right: size(200),
+    ),
+
+    // 'media-grid'
+    grid: (
+        media: (
+            margin-horizontal: size(200),
+            margin-top: size(600)
+        )
+    ),
+
+    // 'media-thumbnail-play'
+    play: (
+        default: (
+            scale: 0.64
+        )
+    ),
+
+    title: (
+        margin-vertical: size(300)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function media($key) {
+    @return component-get(media $key);
+}

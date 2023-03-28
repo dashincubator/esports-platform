@@ -1,0 +1,14 @@
+.--container {
+    &-padding {
+        &,
+        &-small {
+            padding-left: container(spacer);
+            padding-right: container(spacer);
+        }
+
+        @include breakpoint(min-width, container(breakpoint)) {
+            padding-left: container(spacer 500);
+            padding-right: container(spacer 500);
+        }
+    }
+}

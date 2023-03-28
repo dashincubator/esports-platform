@@ -1,0 +1,64 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Modal ( Popup Windows )
+ *
+ */
+
+.modal {
+    @include transition(opacity transform, modal(transition));
+    cursor: default;
+    transform: scale(1);
+    z-index: 1;
+
+    // Necessary To Pass Scroll To Parent
+    // - When Creating Modals Always Style/Use A Child Wrapper To Continue
+    //   Scrolling Through '.modals'
+    @include max-size(modal(max-width default), 100%);
+    @include size(modal(width), auto);
+
+    @include state(not-active) {
+        opacity: 0;
+        pointer-events: none;
+
+        // Prevent Scroll Overlap
+        position: fixed;
+
+        // Scale Used To Fix Scrollbar Flickr On Activation
+        transform: scale(modal(not-active scale));
+
+        input[type='password'] {
+            display: none;
+        }
+    }
+
+
+    @each $size in modal(max-width modifiers) {
+        &--#{$size} {
+            max-width: modal(max-width $size);
+        }
+    }
+
+
+    &-content {
+        margin: modal(content margin);
+        position: relative;
+        width: 100%;
+
+        &--frames {
+            overflow: hidden;
+        }
+    }
+
+    &-section {
+        padding: modal(section padding);
+        position: relative;
+        width: 100%;
+    }
+}
+
+.--modal-section {
+    &-padding {
+        padding: 0 last(modal(section padding));
+    }
+}

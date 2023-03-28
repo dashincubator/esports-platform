@@ -1,0 +1,169 @@
+.--border {
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Border Direction/Side
+     *
+     */
+
+    & {
+        &,
+        &-top,
+        &-right,
+        &-bottom,
+        &-left {
+            border-color: app(border color default);
+            border-style: solid;
+            border-width: border(size default);
+        }
+
+        @each $size in border(size modifiers) {
+            &-#{$size} {
+                border-color: app(border color default);
+                border-style: solid;
+                border-width: border(size $size);
+            }
+        }
+
+        &-dashed {
+            border-style: dashed;
+        }
+    }
+
+    &-top {
+        border-right-width: 0;
+        border-bottom-width: 0;
+        border-left-width: 0;
+    }
+
+    &-right {
+        border-top-width: 0;
+        border-bottom-width: 0;
+        border-left-width: 0;
+    }
+
+    &-bottom {
+        border-top-width: 0;
+        border-right-width: 0;
+        border-left-width: 0;
+    }
+
+    &-left {
+        border-top-width: 0;
+        border-right-width: 0;
+        border-bottom-width: 0;
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Color/Style
+     *
+     */
+
+    &-default {
+        border-color: app(border color default);
+
+        &.--border-color-active {
+            @include state(active) {
+                border-color: app(border color default);
+            }
+        }
+
+        &.--border-color-default {
+            @include state(default) {
+                border-color: app(border color default);
+            }
+        }
+
+        &.--border-color-not-active {
+            @include state(not-active) {
+                border-color: app(border color default);
+            }
+        }
+
+        &.--border-color-override {
+            @include state(active hover-override pressed-override) {
+                border-color: app(border color default);
+            }
+        }
+    }
+
+    @each $color in app(border color modifiers) {
+        &-#{$color} {
+            border-color: color($color);
+
+            &.--border-color-active {
+                @include state(active) {
+                    border-color: color($color);
+                }
+            }
+
+            &.--border-color-not-active {
+                @include state(not-active) {
+                    border-color: color($color);
+                }
+            }
+
+            &.--border-color-override {
+                @include state(active hover-override pressed-override) {
+                    border-color: color($color);
+                }
+            }
+
+            @each $weight in 300 500 {
+                &-#{$weight} {
+                    border-color: color($color $weight);
+
+                    &.--border-color-active {
+                        @include state(active) {
+                            border-color: color($color $weight);
+                        }
+                    }
+
+                    &.--border-color-not-active {
+                        @include state(not-active) {
+                            border-color: color($color $weight);
+                        }
+                    }
+
+                    &.--border-color-override {
+                        @include state(active hover-override pressed-override) {
+                            border-color: color($color $weight);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Misc
+     *
+     */
+
+    &-radius {
+        border-radius: border-radius();
+
+        &-circle {
+            border-radius: border-radius(900);
+        }
+
+        &-curved {
+            border-radius: border-radius(800);
+        }
+
+        &-300 {
+            border-radius: border-radius(300);
+        }
+
+        &-500 {
+            border-radius: border-radius(500);
+        }
+    }
+}

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Cleanup
+rm -r /var/www/resources/assets

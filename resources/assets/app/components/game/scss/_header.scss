@@ -1,0 +1,38 @@
+$border-size: 2px;
+
+&-header {
+
+    &--nav {
+        margin-bottom: (link(size tab height) / 2);
+    }
+
+
+    &-banner {
+        @include position(absolute, full);
+        overflow: hidden;
+
+        &-image {
+            @include position(absolute, full);
+            background-color: color('black' 500);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            &::before {
+                @include position(absolute, full);
+                background: linear-gradient(to top, color('black' 500, 0.7) 0%, color('black' 500, 0.5) 100%);
+                content: '';
+                z-index: 0;
+            }
+        }
+    }
+
+    &-content {
+        padding: section(margin-top large) 0;
+        z-index: 1;
+    }
+
+    &-nav {
+        margin-bottom: (- (link(size tab height) / 2));
+    }
+}

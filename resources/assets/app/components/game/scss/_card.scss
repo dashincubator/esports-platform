@@ -1,0 +1,71 @@
+&-card {
+    background-color: color('black' 500);
+    border-radius: border-radius(500);
+    overflow: hidden;
+    position: relative;
+    width: 360px;
+
+
+    &--full {
+        width: 100%;
+    }
+
+
+    &-banner {
+        @include position(absolute, full);
+        @include transition(opacity);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto 148%;
+        opacity: 0.4; 
+        z-index: 0;
+
+        &::after {
+            @include position(absolute, full);
+            background: linear-gradient(to top, color('black' 500, 0.64) 10%, color('black' 500, 0) 40%);
+            content: '';
+            z-index: 1;
+        }
+    }
+
+    #{state(default)} &-banner {
+        opacity: 1;
+    }
+
+    &-overlay {
+        @include transition(opacity transform);
+        padding: (size(800) * 3) 0 (app(margin-top small) + 2px);
+        position: relative;
+        width: 100%;
+        z-index: 2;
+
+        &::before {
+            @include position(absolute, full);
+            @include transition(opacity transform);
+            content: '';
+        }
+    }
+
+    #{state(default)} &-overlay {
+        opacity: 0;
+        transform: translateY(#{button(size default height) + app(margin-top small)});
+    }
+
+    &-stats {
+        @include position(absolute, bottom);
+        @include transition(opacity transform);
+        padding: app(margin-top small);
+        z-index: 1;
+
+        @include breakpoint(max-width, 400px) {
+            .--text-small {
+                display: none;
+            }
+        }
+    }
+
+    &:hover &-stats {
+        opacity: 0;
+        transform: translateY(- size(800));
+    }
+}

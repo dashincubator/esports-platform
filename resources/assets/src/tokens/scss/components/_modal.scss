@@ -1,0 +1,51 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Modal Module Configuration
+ *
+ */
+
+@include component-set(modal, (
+    close: (
+        // Spacer Between Document Top & Right
+        spacer: container(spacer 500)
+    ),
+
+    content: (
+        // Keeps Modals Uniform With Container Spacing
+        margin: container(spacer 500) 0
+    ),
+
+    max-width: (
+        modifiers: 'large' 'small',
+
+        default: 800px,
+        large: 1400px,
+        small: 420px
+    ),
+
+    // On Open Modal Animates Scaling Down To Original Size
+    not-active: (
+        scale: 1.16
+    ),
+
+    section: (
+        padding: size(600)
+    ),
+
+    transition: 0.12s,
+
+    width: calc(100% - #{container(spacer 500) * 2})
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function modal($key) {
+    @return component-get(modal $key);
+}

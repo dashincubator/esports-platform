@@ -1,0 +1,17 @@
+#!/bin/sh
+
+DOCKER_COMPOSE_VERSION='1.25.4'
+
+# Update Package List
+sudo apt-get update -y
+
+# Upgrade Existing Extensions
+sudo apt-get upgrade -y
+sudo apt-get dist-upgrade -y
+
+# Install Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+
+# Fix Execution Permissions
+sudo chmod +x /usr/bin/docker-compose
+ 

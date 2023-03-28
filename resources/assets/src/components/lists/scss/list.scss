@@ -1,0 +1,100 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Bulletpoint/Numbered Lists
+ *
+ */
+
+.list {
+    &,
+    &-item {
+        display: flex;
+        flex-flow: column wrap;
+        margin-top: list(item margin-top default);
+        position: relative;
+        width: 100%;
+
+        &--margin-top {
+            &-nested {
+                margin-top: size(200);
+            }
+        }
+    }
+
+
+    &:not(.list--first-child):first-child,
+    &-item:not(.list-item--first-child):first-child {
+        margin: 0;
+    }
+
+
+    &-item {
+        line-height: line-height-filter(font-size());
+
+        &::before {
+            @include position(absolute, 0 null null 0);
+        }
+
+        // Nested Lists
+        & #{&} {
+            margin-top: list(item margin-top nested);
+        }
+
+
+        // Vertically Centers Bullet With List Text
+        @function calculate-bullet-margin($weight: 400) {
+            $font-size: font-size($weight);
+
+            @return (($font-size * line-height-filter($font-size)) - list(item bullet size)) / 2;
+        }
+
+        &--bulletpoint {
+            padding-left: list(item padding-left bulletpoint);
+
+            &::before {
+                @include circle(list(item bullet size));
+                background-color: color('text' 500);
+                content: '';
+                margin-top: calculate-bullet-margin();
+            }
+
+            &.list-item {
+                &.--text-large::before {
+                    margin-top: calculate-bullet-margin(500);
+                }
+
+                &.--text-small::before {
+                    margin-top: calculate-bullet-margin(300);
+                }
+            }
+
+            // Nested Lists
+            & #{&}::before {
+                background-color: transparent;
+                border: 1px solid color('text' 500);
+            }
+        }
+
+
+        // Overrides Bulletpoint Color But Not Numbered
+        @include color-modifiers(background-color color, list(item bullet color modifiers), '&--{r}::before');
+
+
+        &--numbered {
+            counter-increment: list;
+            padding-left: list(item padding-left numbered);
+
+            &::before {
+                background-color: transparent;
+                color: color('text' 500);
+                content: counter(list);
+                display: flex;
+                font-weight: font-weight(600);
+                justify-content: center;
+                text-align: center;
+                white-space: nowrap;
+                width: list(item padding-left numbered) / 2;
+            }
+        }
+    }
+}

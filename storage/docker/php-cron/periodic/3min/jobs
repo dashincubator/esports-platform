@@ -1,0 +1,3 @@
+#!/bin/sh
+
+docker exec -d php php ${PHP_JOBS_DIR}/@3min.php

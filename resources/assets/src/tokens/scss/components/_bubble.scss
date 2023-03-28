@@ -1,0 +1,33 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Bubble Module Configuration
+ *
+ */
+
+@include component-set(bubble, (
+    border: (
+        size: border-size()
+    ),
+    color: (
+        modifiers: join(color(modifiers), 'black' 'grey' 'white')
+    ),
+    size: (
+        modifiers: 'small',
+
+        default: size(300),
+        small: size(200)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function bubble($key) {
+    @return component-get(bubble $key);
+}

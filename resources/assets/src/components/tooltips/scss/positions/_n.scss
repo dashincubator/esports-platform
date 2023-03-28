@@ -1,0 +1,47 @@
+&--n {
+    bottom: calc(100% - #{$spacer});
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%) scale($scale);
+    transform-origin: center bottom;
+
+    #{$active} {
+        transform: translate(50%, (- $spacer-double));
+    }
+
+    &.tooltip-content--noscale {
+        transform: translateX(50%);
+    }
+}
+
+&--ne {
+    bottom: calc(100% - #{$spacer});
+    position: absolute;
+    right: (- $spacer-half);
+    transform: scale($scale);
+    transform-origin: bottom right;
+
+    #{$active} {
+        transform: translate((- $spacer-half), (- $spacer-double));
+    }
+
+    &.tooltip-content--noscale {
+        transform: scale(1);
+    }
+}
+
+&--nw {
+    bottom: calc(100% - #{$spacer});
+    left: (- $spacer-half);
+    position: absolute;
+    transform: scale($scale);
+    transform-origin: bottom left;
+
+    #{$active} {
+        transform: translate($spacer-half, (- $spacer-double));
+    }
+
+    &.tooltip-content--noscale {
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,33 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Container Module Configuration
+ *
+ */
+
+@include component-set(container, (
+    breakpoint: 600px,
+    max-width: 1400px,
+
+    // Used On Each Side Of Container
+    spacer: (
+        400: size(500),
+        500: size(600)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function container($key) {
+    @if length($key) == 1 and component-get(container $key token-weight(default)) != false {
+        $key: append($key, token-weight(default));
+    }
+
+    @return component-get(container $key);
+}

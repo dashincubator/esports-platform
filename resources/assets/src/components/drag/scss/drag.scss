@@ -1,0 +1,12 @@
+[data-mousemove="drag-move"] {
+    cursor: grab;
+    user-select: none;
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    &::selection {
+        background: transparent;
+    }
+}

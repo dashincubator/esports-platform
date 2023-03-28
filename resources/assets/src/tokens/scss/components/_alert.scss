@@ -1,0 +1,46 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Alert Module Configuration
+ *
+ */
+
+@include component-set(alert, (
+    padding: size(),
+    width: (
+        // Set As 'width' CSS Property
+        default: 480px,
+
+        // 'min-width' Property
+        min: 25vw
+    ),
+
+
+    // 'anchor-close' - Close Button Width
+    close: (
+        color: (
+            modifiers: 'green' 'red'
+        ),
+        width: (
+            active: size(600),
+            inactive: size(100)
+        )
+    ),
+ 
+    // 'alert-message'
+    message: (
+        margin-top: size(200)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function alert($key) {
+    @return component-get(alert $key);
+}

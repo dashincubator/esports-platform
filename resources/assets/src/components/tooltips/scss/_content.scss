@@ -1,0 +1,80 @@
+/**
+ *--------------------------------------------------------------------------
+ *
+ *  Tooltip Content Wrapper
+ *
+ *  Wrapper Is Used To Simplify Animation, Positioning And
+ *  Visibility Of Tooltip Content
+ *
+ *  Tooltips Are Activated By JS To Simplify CSS Selectors:
+ *  - On 'hover' By Default
+ *  - On 'click' When Using "data-trigger='toggle'"
+ *
+ */
+
+&-content {
+    @include transition(transform opacity, tooltip(content transition));
+    border-radius: border-radius();
+    max-width: calc(100vw - #{container(spacer) * 2});
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9;
+
+
+    // Shared With Positioning CSS
+    $active: '#{state(active, '.tooltip')} > &, #{state(active, '.tooltip')} :not(.tooltip) > &';
+
+    #{$active} {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+
+    &--menu {
+        @include apply-css(tooltip(content menu css));
+        cursor: default;
+    }
+
+    &--message {
+        @include apply-css(tooltip(content message css));
+        cursor: auto;
+        line-height: normal;
+        white-space: nowrap;
+    }
+
+    &--nopointer {
+        #{$active} {
+            pointer-events: none;
+        }
+    }
+
+    &--scrollbar {
+        @include apply-css(tooltip(content scrollbar css));
+        overflow: hidden;
+
+        .tooltip-content-wrapper {
+            @include apply-css(tooltip(content scrollbar wrapper css));
+        }
+    }
+
+    &--table {
+        @include apply-css(tooltip(content table css));
+    }
+
+    // Controls Positioning Of Tooltip
+    & {
+        $scale:  tooltip(content scale);
+        $spacer: tooltip(content spacer);
+
+        $spacer-double: $spacer * 2;
+        $spacer-half: $spacer / 2;
+
+        @import
+            'positions/c',
+            'positions/e',
+            'positions/n',
+            'positions/s',
+            'positions/w'
+        ;
+    }
+}

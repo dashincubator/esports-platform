@@ -1,0 +1,37 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Link Title Used By Various Link Groups
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-title {
+    @include apply-css(app(font default css));
+    color: color('text' 500);
+    font-weight: font-weight(500);
+    padding: first(link(size default padding)) 0;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+
+    &--button {
+        padding: link(size default padding);
+    }
+
+    @each $size in link(size modifiers) {
+        &--#{$size} {
+            padding: first(link(size $size padding)) 0;
+        }
+
+        &--button-#{$size} {
+            padding: link(size $size padding);
+        }
+    }
+}

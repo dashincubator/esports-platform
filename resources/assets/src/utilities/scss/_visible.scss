@@ -1,0 +1,15 @@
+.--visible {
+    &-active {
+        @include state(active) {
+            display: none;
+        }
+    }
+
+    @each $breakpoint in app(breakpoints) {
+        @include breakpoint(min-width, $breakpoint) {
+            &-#{$breakpoint} {
+                display: none;
+            }
+        }
+    }
+}

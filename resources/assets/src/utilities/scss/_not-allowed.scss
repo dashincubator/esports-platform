@@ -1,0 +1,15 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Wrapper To Keep 'not-allowed' Cursor On Disabled Elements
+ *
+ */
+
+.--not-allowed {
+    cursor: not-allowed;
+    max-width: 100%;
+
+    > * {
+        pointer-events: none;
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "scss": [
+        "scss/columns.scss",
+        "scss/column.scss"
+    ]
+}

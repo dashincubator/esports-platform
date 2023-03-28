@@ -1,0 +1,23 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Frame Module Configuration
+ *
+ */
+
+@include component-set(frame, (
+    transform: 12%,
+    transition: 0.08s
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function frame($key) {
+    @return component-get(frame $key);
+}

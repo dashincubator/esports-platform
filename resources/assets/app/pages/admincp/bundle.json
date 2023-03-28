@@ -1,0 +1,6 @@
+{
+    "js": [
+        "js/gametype.js",
+        "js/ladder.js"
+    ]
+}

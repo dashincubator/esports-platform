@@ -1,0 +1,62 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Flex Column
+ *
+ */
+
+.column {
+    position: relative;
+
+
+    &--padding {
+        &-horizontal {
+            padding: 0 columns(padding);
+        }
+
+        &-left {
+            padding-left: columns(padding);
+        }
+
+        &-right {
+            padding-right: columns(padding);
+        }
+    }
+
+    &--width {
+        &-fill {
+            flex: 1 1 auto;
+            width: 0%;
+        }
+
+        &-fixed {
+            flex: 0 0 columns(width fixed default);
+            max-width: columns(width fixed default);
+
+            @each $modifier in columns(width fixed modifiers) {
+                &-#{$modifier} {
+                    flex: 0 0 columns(width fixed $modifier);
+                    max-width: columns(width fixed $modifier);
+                }
+            }
+        }
+
+        &-full {
+            flex: unset;
+            max-width: 100%;
+            padding: 0;
+            width: 100%;
+
+            @each $breakpoint in app(breakpoints) {
+                @include breakpoint(max-width, $breakpoint) {
+                    &-#{$breakpoint} {
+                        flex: unset;
+                        max-width: 100%;
+                        padding: 0;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+&-vs {
+    margin: section(margin-top small) 0 0;
+    position: relative;
+    width: 100%;
+
+    $border-color: app(border color default);
+    $border-size: border-size(300);
+    $border-style: dashed;
+
+    &::after {
+        @include position(absolute, center);
+        @include size(100%, 1px);
+        border-top: $border-size $border-style $border-color;
+        content: '';
+        z-index: -1;
+    }
+
+    &:last-child {
+        display: none;
+    }
+
+    &,
+    &-text {
+        align-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &-text {
+        @include size(size(700));
+        background-color: color('grey');
+        border: $border-size $border-style $border-color;
+        border-radius: border-radius(500);
+        box-shadow: box-shadow(), 0 0 0 size() color('grey');
+        font-weight: font-weight(500);
+        z-index: 1;
+    }
+}

@@ -1,0 +1,11 @@
+@include token-merge(colors misc, (
+    // Consoles
+    activision: color('black'),
+    cross-console: color('purple'),
+    cross-play: color('purple'),
+    playstation: #004ea6,
+    xbox: #289128,
+
+    // Games
+    cod: #181b1e
+));

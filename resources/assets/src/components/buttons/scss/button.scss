@@ -1,0 +1,110 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Buttons
+ *
+ */
+
+.button {
+    @include apply-css(app(font default css));
+    @include transition(background-color border-color box-shadow color opacity);
+    align-content: center;
+    border-radius: border-radius();
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: button(size default padding);
+    position: relative;
+
+
+    &.button--border,
+    &.button--border-small,
+    &.button--ghost,
+    &.button--shadow {
+        padding: (button(size default padding) - button(border size default)) button(size default padding);
+
+        @each $border-size in button(border size modifiers) {
+            &-#{$border-size} {
+                padding: (button(size default padding) - button(border size $border-size)) button(size default padding);
+            }
+        }
+    }
+
+    &.button--circle {
+        &.button--border,
+        &.button--border-small,
+        &.button--ghost,
+        &.button--shadow {
+            padding: (button(size default padding) - button(border size default));
+
+            @each $border-size in button(border size modifiers) {
+                &-#{$border-size} {
+                    padding: (button(size default padding) - button(border size $border-size));
+                }
+            }
+        }
+    }
+
+    @each $size in button(size modifiers) {
+        &--#{$size}{
+            padding: button(size $size padding);
+
+            &.button--border,
+            &.button--border-small,
+            &.button--ghost,
+            &.button--shadow {
+                padding: (first(button(size $size padding)) - button(border size default)) last(button(size $size padding));
+
+                @each $border-size in button(border size modifiers) {
+                    &-#{$border-size} {
+                        padding: (first(button(size $size padding)) - button(border size $border-size)) last(button(size $size padding));
+                    }
+                }
+            }
+
+            &.button--circle {
+                &.button--border,
+                &.button--border-small,
+                &.button--ghost,
+                &.button--shadow {
+                    padding: (last(button(size $size padding)) - button(border size default));
+
+                    @each $border-size in button(border size modifiers) {
+                        &-#{$border-size} {
+                            padding: (last(button(size $size padding)) - button(border size $border-size));
+                        }
+                    }
+                }
+            }
+ 
+            &.button--circle {
+                @include size((last(button(size $size padding)) * 2) + icon(size default));
+            }
+        }
+    }
+
+    &--circle {
+        @include size((last(button(size default padding)) * 2) + icon(size default));
+        border-radius: border-radius(900);
+    }
+
+    &--curved {
+        border-radius: border-radius(800);
+    }
+
+    &--width {
+        min-width: button(width default);
+
+        @each $size in button(width modifiers) {
+            &-#{$size} {
+                min-width: button(width $size);
+            }
+        }
+    }
+
+    @import
+        'colors',
+        'group'
+    ;
+}

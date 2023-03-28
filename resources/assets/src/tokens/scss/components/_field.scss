@@ -1,0 +1,97 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Form Module Configuration
+ *
+ */
+
+@include component-set(field, (
+    color: (
+        modifiers: 'black' 'primary' 'secondary' 'misc',
+        text: color('text' 500)
+    ),
+    padding: size(),
+
+    // 'field-check'
+    check: (
+        // Size Of Each Checkbox Icon
+        // - Switch Is Only Used For It's Width
+        size: (
+            default: size(500),
+            switch: 38px
+        ),
+
+        // Spacer Between Checkbox Icon And Title
+        spacer: size()
+    ),
+
+    // 'field-description'
+    description: (
+        margin-top: size(300)
+    ),
+
+    // Opacity States
+    opacity: (
+        default: 0.92,
+        hover: 0.96,
+        pressed: 1
+    ),
+
+    required: (
+        padding: size(200),
+        size: 6px
+    ),
+
+    // 'field-text--select'
+    select: (
+        // Default Padding Right Spacer
+        // - Makes Room For Pseudo Element Down Arrow
+        padding-right: size(),
+
+        // Used By 'field--border', 'field--grey', 'field--white' Select Field Module
+        large: (
+            arrow: (
+                right: size()
+            ),
+            padding-right: size(600)
+        )
+    ),
+
+    // Shared By Input, Select, Textarea Fields
+    text: (
+        border: (
+            // Field Border Width
+            field: 1px,
+
+            // Default Bottom Border Width Of Normal Fields Elements
+            // - Also Used For Select Field Border Width
+            grow: 2px,
+
+            // Used For Animated Border Radius
+            radius: 4px
+        ),
+
+        // Used By 'field--border', 'field--grey', 'field--title' When 'field-title' Is Used
+        margin-top: size(300),
+    ),
+
+    // 'field-title'
+    title: (
+        // 'field-title--horizontal'
+        horizontal: (
+            margin-right: size(300)
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function field($key) {
+    @return component-get(field $key);
+}

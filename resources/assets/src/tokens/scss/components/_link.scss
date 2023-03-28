@@ -1,0 +1,82 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Link Module Configuration
+ *
+ */
+
+@include component-set(link, (
+    // 'link--border'
+    border: (
+        radius: 4px,
+
+        // Border Width Of Links Based On Link Size
+        size: (
+            // '.link--badge'
+            badge: 0,
+
+            default: 2px,
+
+            // '.link--small'
+            small: 0,
+
+            // '.link--large'
+            large: 3px,
+
+            // '.link--menu'
+            menu: 3px,
+
+            // '.link--tab'
+            tab: 3px
+        ),
+
+        transform: 3px
+    ),
+
+    // Color States
+    color: (
+        button: (
+            modifiers: 'black' 'grey' 'white'
+        ),
+        manual: (
+            'grey': (
+                default:   color('grey'),
+                highlight: color('white'),
+                pressed:   color('grey' 500)
+            ),
+            'text': button(color manual text),
+            'white': button(color manual 'white')
+        ),
+        modifiers: join(color(modifiers), 'black' 'misc')
+    ),
+
+    // 'link-menu'
+    menu: (
+        border: (
+            size: border-size(300)
+        ),
+        padding: size(200) 0
+    ),
+
+    size: button(size),
+
+    // 'link--scroller .link'
+    scroller: (
+        border: (
+            size: border-size(300)
+        ),
+        margin-horizontal: size(300)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function link($key) {
+    @return component-get(link $key);
+}

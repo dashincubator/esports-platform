@@ -1,0 +1,21 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text Elements
+ *
+ */
+
+.text {
+    @include apply-css(app(font default css));
+    display: flex;
+    flex-flow: wrap;
+    max-width: 100%;
+    position: relative;
+
+
+    @import
+        'group',
+        'list',
+        'lists'
+    ;
+}

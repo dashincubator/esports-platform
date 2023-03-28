@@ -1,0 +1,38 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Lists Module Configuration
+ *
+ */
+
+@include component-set(list, (
+    // 'list-item'
+    item: (
+        bullet: (
+            color: (
+                modifiers: color(modifiers)
+            ),
+            size: 6px
+        ),
+        margin-top: (
+            default: size(),
+            nested: size(100)
+        ),
+        padding-left: (
+            bulletpoint: size(),
+            numbered: size(500)
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function list($key) {
+    @return component-get(list $key);
+}

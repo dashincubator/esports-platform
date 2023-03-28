@@ -1,0 +1,54 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Membership Icon/Tooltip
+ *  - Use Position Utilities Or Create Custom Properties
+ *
+ */
+
+.membership {
+    &-icon {
+        height: membership(size default);
+
+
+        @each $modifier in membership(size modifiers) {
+            &--#{$modifier} {
+                height: membership(size $modifier);
+            }
+        }
+
+
+        &-image {
+            height: 100%;
+        }
+    }
+}
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Utilities
+ *
+ */
+
+@at-root .--membership-icon {
+    @each $direction in 'right' 'left'  {
+        &-#{$direction} {
+            padding-#{$direction}: membership(size default) + app(icon padding);
+        }
+
+        @each $modifier in membership(size modifiers) {
+            &-#{$modifier}-#{$direction} {
+                padding-#{$direction}: membership(size $modifier) + app(icon padding);
+            }
+        }
+
+        @each $breakpoint in app(breakpoints) {
+            @include breakpoint(max-width, $breakpoint) {
+                &-#{$direction}-hidden-#{$breakpoint} {
+                    padding-#{$direction}: 0;
+                }
+            }
+        }
+    }
+}

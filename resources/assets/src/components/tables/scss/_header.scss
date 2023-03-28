@@ -1,0 +1,12 @@
+&-header {
+    @include apply-css(app(font small css));
+    border-radius: inherit;
+    padding: table(header padding default);
+
+
+    @each $size in table(header padding modifiers) {
+        &--#{$size} {
+            padding: table(header padding $size);
+        }
+    }
+}

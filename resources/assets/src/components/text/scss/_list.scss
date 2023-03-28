@@ -1,0 +1,53 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text List
+ *
+ *  Import Within Text Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    position: relative;
+
+
+    > .text {
+        &,
+        &-group,
+        &-list {
+            flex: 1 1 auto;
+            margin: text(list item margin-vertical default) 0;
+            max-width: 100%;
+
+            &::after {
+                display: none;
+            }
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        @each $size in text(list item margin-vertical modifiers) {
+            &--#{$size} {
+                margin: text(list item margin-vertical $size) 0;
+            }
+        }
+    }
+
+    .icon + .text,
+    .image + .text {
+        &,
+        &-group,
+        &-list {
+            margin-top: 0;
+        }
+    }
+}

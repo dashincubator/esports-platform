@@ -1,0 +1,6 @@
+#!/bin/sh
+
+docker exec mariadb mysqldump \
+    --user=${MYSQL_USER} --password="${MYSQL_PASSWORD}" --protocol=socket --socket=${MYSQL_SOCKET} ${MYSQL_DATABASE} \
+    --compact --quick --single-transaction --skip-lock-tables \
+    | gzip -9 > ${MYSQL_BACKUP}.gz

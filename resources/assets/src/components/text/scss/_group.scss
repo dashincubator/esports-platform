@@ -1,0 +1,36 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text Group
+ *
+ *  Import Within Text Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-group {
+    display: flex;
+    max-width: 100%;
+    position: relative;
+
+
+    > .text {
+        flex: 0 0 auto;
+        max-width: 100%;
+
+        &:not(:last-child) {
+            padding-right: text(group padding-right);
+
+            &::after {
+                @include circle(text(group bullet size));
+                @include position(absolute, vertical);
+                background-color: color('text');
+                content: '';
+                right: (text(group padding-right) - text(group bullet size)) / 2;
+            }
+        }
+
+        @include color-modifiers(background-color, text(group bullet color modifiers),
+            '&.--text-{r}-300::after' '&.--text-{r}::after' '&.--text-{r}-500::after'
+        );
+    }
+}

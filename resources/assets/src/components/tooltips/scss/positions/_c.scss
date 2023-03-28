@@ -1,0 +1,47 @@
+&--c {
+    bottom: 50%;
+    position: absolute;
+    right: 50%;
+    transform: translate(50%, 50%) scale($scale);
+    transform-origin: center center;
+
+    #{$active} {
+        transform: translate(50%, 50%);
+    }
+
+    &.tooltip-content--noscale {
+        transform: translate(50%, 50%);
+    }
+}
+
+&--ce {
+    bottom: 50%;
+    position: absolute;
+    right: (- $spacer);
+    transform: translateY(50%) scale($scale);
+    transform-origin: center right;
+
+    #{$active} {
+        transform: translate((- $spacer), 50%);
+    }
+
+    &.tooltip-content--noscale {
+        transform: scale(1);
+    }
+}
+
+&--cw {
+    bottom: 50%;
+    position: absolute;
+    left: (- $spacer);
+    transform: translateY(50%) scale($scale);
+    transform-origin: center left;
+
+    #{$active} {
+        transform: translate($spacer, 50%);
+    }
+
+    &.tooltip-content--noscale {
+        transform: scale(1);
+    }
+}

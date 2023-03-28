@@ -1,0 +1,23 @@
+.--background {
+    @each $color in app(background color modifiers) {
+        &-#{$color} {
+            background-color: color($color);
+
+            &-300 {
+                background-color: color($color 300);
+            }
+
+            &-500 {
+                background-color: color($color 500);
+            }
+        }
+    }
+
+    &-border-default {
+        background-color: app(border color default);
+    }
+
+    &-white {
+        background: color('white');
+    }
+}

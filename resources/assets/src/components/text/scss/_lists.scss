@@ -1,0 +1,29 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Vertical Set Of Text Lists ( icon - text )
+ *
+ *  Import Within Text Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-lists {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    position: relative;
+
+
+    > .text {
+        &,
+        &-list,
+        &-group {
+            margin-top: text(stats margin-top);
+            width: 100%;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}

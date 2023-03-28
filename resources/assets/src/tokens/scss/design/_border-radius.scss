@@ -1,0 +1,32 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Border-Radius
+ *
+ */
+
+@include token-set(border-radius, (
+    300: 2px,
+    400: 3px,
+    500: 4px,
+    600: 6px,
+    700: 8px,
+
+    // Curved Elements Like Buttons
+    800: 240px,
+
+    // Circle
+    900: 50%
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function border-radius($key: token-weight(default)) {
+    @return token-get(border-radius $key);
+}

@@ -1,0 +1,21 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Field Description
+ *
+ *  Import Within Field Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-description {
+    @include apply-css(app(font small css));
+    margin-top: field(description margin-top);
+    order: 1;
+    position: relative;
+    width: 100%;
+    word-wrap: break-word;
+
+    &:empty {
+        margin: 0;
+    }
+}

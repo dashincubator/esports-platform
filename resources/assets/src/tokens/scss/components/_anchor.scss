@@ -1,0 +1,23 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Anchor Module Configuration
+ *
+ */
+
+@include component-set(anchor, (
+    // Spacing Between Browser Edge And '.anchor'
+    spacer: size(500)
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function anchor($key) {
+    @return component-get(anchor $key);
+}

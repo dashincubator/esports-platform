@@ -1,0 +1,81 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Shared Link Color Properties
+ *
+ */
+
+@mixin link-color($default, $hover, $pressed) {
+    &.link {
+
+        // Apply On All Interactive States
+        &--border {
+            @include state(highlight) {
+                border-color: $hover;
+            }
+
+            @include state(pressed) {
+                border-color: $pressed;
+            }
+
+            // Only On Active State
+            &-active {
+                @include state(active) {
+                    border-color: $pressed;
+                }
+            }
+        }
+
+        // Apply On All Interactive States
+        &--color {
+            @include state(highlight) {
+                border-color: $hover;
+                color: $hover;
+            }
+
+            @include state(pressed) {
+                border-color: $pressed;
+                color: $pressed;
+            }
+
+            // Only On Active State
+            &-active {
+                @include state(active) {
+                    border-color: $pressed;
+                    color: $pressed;
+                }
+            }
+            
+            &-default {
+                @include state(default) {
+                    border-color: $default;
+                    color: $default;
+                }
+            }
+        }
+
+        // Apply On All Interactive States
+        &--icon {
+            @include state(highlight) {
+                .icon {
+                    color: $hover;
+                }
+            }
+
+            @include state(pressed) {
+                .icon {
+                    color: $pressed;
+                }
+            }
+
+            // Only On Active State
+            &-active {
+                @include state(active) {
+                    .icon {
+                        color: $pressed;
+                    }
+                }
+            }
+        }
+    }
+}

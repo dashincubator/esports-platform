@@ -1,0 +1,22 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Group Module Configuration
+ *
+ */
+
+@include component-set(group, (
+    spacer: size(500)
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function group($key) {
+    @return component-get(group $key);
+}

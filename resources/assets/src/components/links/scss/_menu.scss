@@ -1,0 +1,53 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Link Menu
+ *  - Typically Used For Tooltip Menu Dropdowns's, Off Canvas Menu's, etc
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-menu {
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+
+    &--border {
+        &-left,
+        &-right {
+            &::before {
+                @include transition(border-color opacity transform);
+                border-color: inherit;
+                border-style: solid;
+                content: '';
+                z-index: 0;
+            }
+
+            .link {
+                z-index: 1;
+            }
+        }
+
+        &-left {
+            &::before {
+                @include position(absolute, left);
+                border-width: 0 link(menu border size) 0 0;
+            }
+        }
+
+        &-right {
+            &::before {
+                @include position(absolute, right);
+                border-width: 0 0 0 link(menu border size);
+            }
+        }
+    }
+
+    &--padding {
+        padding: link(menu padding);
+    }
+}

@@ -1,0 +1,19 @@
+.chat {
+    position: relative;
+    width: 100%;
+
+
+    @import
+        'date',
+        'ended',
+        'form',
+        'message'
+    ;
+
+    &-form-field,
+    &-message {
+        @include breakpoint(min-width, 600px) {
+            padding-left: chat(avatar size) +  chat(avatar margin-right);
+        }
+    }
+}

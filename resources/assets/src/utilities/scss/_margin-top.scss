@@ -1,0 +1,19 @@
+.--margin-top {
+    margin-top: app(margin-top default);
+
+    &-border {
+        margin-top: border(size default);
+
+        @each $size in border(size modifiers) {
+            &-#{$size} {
+                margin-top: border(size $size);
+            }
+        }
+    }
+
+    @each $size in app(margin-top modifiers) {
+        &-#{$size} {
+            margin-top: app(margin-top $size);
+        }
+    }
+}

@@ -1,0 +1,29 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Remove Item(s) From List
+ *
+ */
+
+@function list-remove($needles, $haystack, $recursive: false) {
+    @if type-of($needles) == list {
+        @each $needle in $needles {
+            $haystack: list-remove($needle, $haystack, $recursive);
+        }
+
+        @return $haystack;
+    }
+
+    $result: ();
+
+    @for $i from 1 through length($haystack) {
+        @if type-of(nth($haystack, $i)) == list and $recursive {
+            $result: append($result, list-remove(nth($haystack, $i), $needles, $recursive));
+        }
+        @else if nth($haystack, $i) != $needles {
+            $result: append($result, nth($haystack, $i));
+        }
+    }
+
+    @return $result;
+}

@@ -1,0 +1,50 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Drawers Container
+ *
+ */
+
+.drawers {
+    @include position(absolute, full);
+    @include transition(opacity, drawer(transition));
+    pointer-events: auto;
+    z-index: 7;
+
+    @include state(not-active) {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+    &--black {
+        background-color: color('black' 500, 0.8);
+    }
+
+    &--grey {
+        background-color: color('grey', 0.8);
+
+        .drawers-close {
+            color: color('text' 500);
+        }
+    }
+
+
+    $horizontal: 2px;
+
+    &-close {
+        @include position(fixed, drawer(close spacer) (drawer(close spacer) - $horizontal) null null);
+        color: color('white');
+        pointer-events: none;
+        z-index: 3;
+
+        @include breakpoint(max-width, 600px) {
+            display: none;
+        }
+
+        .drawer--e ~ & {
+            left: (drawer(close spacer) - $horizontal);
+            right: unset;
+        }
+    }
+}

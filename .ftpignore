@@ -1,0 +1,5 @@
+/resources/assets
+**/node_modules
+*.log*
+.ftpconfig
+.ftpignore

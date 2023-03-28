@@ -1,0 +1,15 @@
+[
+    "../src/core/boot",
+
+    "../src/tokens",
+    "tokens",
+
+    "../src/components",
+    "components",
+
+    "../src/utilities",
+
+    "pages",
+
+    "../src/core/start"
+]

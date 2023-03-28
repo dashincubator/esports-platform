@@ -1,0 +1,24 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Border-Size
+ *
+ */
+
+@include token-set(border-size, (
+    300: 1px,
+    400: 2px,
+    500: 3px
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function border-size($key: token-weight(default)) {
+    @return token-get(border-size $key);
+}

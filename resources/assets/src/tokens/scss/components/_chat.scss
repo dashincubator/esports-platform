@@ -1,0 +1,60 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Chat Module Configuration
+ *
+ */
+
+@include component-set(chat, (
+    // 'chat-message-avatar'
+    avatar: (
+        margin-right: size(),
+        size: size(700)
+    ),
+
+    background: color('grey'),
+
+    border: (
+        size: border-size(300),
+        style: dashed
+    ),
+
+    date: (
+        padding: size(300) size()
+    ),
+
+    ended: (
+        padding: size(500)
+    ),
+
+    form: (
+        field: (
+            color: (
+                modifiers: 'black' 'primary'
+            ),
+            padding: (size(800) - size(200))
+        )
+    ),
+
+    // 'chat-message'
+    message: (
+        margin-top: size(800),
+
+        // 'chat-message-text'
+        text: (
+            margin-top: size(200)
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function chat($key) {
+    @return component-get(chat $key);
+}

@@ -1,0 +1,70 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Individual Card Shell
+ *
+ */
+
+.card {
+    border-radius: border-radius();
+    position: relative;
+
+    // Pseudo Element Box Shadow
+    &::before {
+        @include position(absolute, full);
+        @include transition(box-shadow opacity);
+        border-radius: inherit;
+        box-shadow: box-shadow();
+        content: '';
+        opacity: 0.6;
+        z-index: 0;
+    }
+
+    @include state(active) {
+        &::before {
+            opacity: 1;
+        }
+    }
+
+    @include state(hover) {
+        &::before {
+            box-shadow: box-shadow(500);
+            opacity: 1;
+        }
+    }
+
+
+    &--basic {
+        &::before {
+            display: none;
+        }
+    }
+
+    &--static {
+        @include state(active hover) {
+            &::before {
+                box-shadow: box-shadow();
+                opacity: 0.6;
+            }
+        }
+    }
+
+
+    &-section {
+        padding: card(section padding default);
+        position: relative;
+        width: 100%;
+
+        @each $size in card(section padding modifiers) {
+            &--#{$size} {
+                padding: card(section padding $size);
+            }
+        }
+    }
+
+    @import
+        'column',
+        'grid',
+        'scroller'
+    ;
+}

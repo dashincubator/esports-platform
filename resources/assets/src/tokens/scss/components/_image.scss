@@ -1,0 +1,28 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Image Module Configuration
+ *
+ */
+
+@include component-set(image, (
+    size: (
+        modifiers: 'default' 'large' 'small',
+
+        default: size(600),
+        large: size(700),
+        small: size(500)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function image($key) {
+    @return component-get(image $key);
+}

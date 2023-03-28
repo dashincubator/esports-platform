@@ -1,0 +1,7 @@
+.--min-width {
+    @each $breakpoint in app(breakpoints) {
+        &-#{$breakpoint} {
+            min-width: $breakpoint;
+        }
+    }
+}

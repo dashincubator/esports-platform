@@ -1,0 +1,80 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Tooltip Module Configuration
+ *
+ */
+
+@include component-set(tooltip, (
+    // 'tooltip-content'
+    content: (
+        // 'tooltip-content--menu'
+        menu: (
+            css: (
+                box-shadow: box-shadow(),
+                min-width: 240px
+            )
+        ),
+
+        // 'tooltip-content--message'
+        message: (
+            css: (
+                background-color: color('black' 500),
+                box-shadow: box-shadow(),
+                color: color('white'),
+                font-size: font-size(300),
+                font-weight: font-weight(),
+                padding: size(300),
+                text-align: center
+            )
+        ),
+
+        // Size Of Tooltip Content When Inactive
+        scale: 0.8,
+
+        transition: 0.08s,
+
+        // Spacer Between '.tooltip-content' And Parent Element
+        spacer: size(300),
+
+        // '.tooltip-content--scrollbar .tooltip-content-wrapper'
+        scrollbar: (
+            css: (
+                border-radius: border-radius() border-radius(300) border-radius(300) border-radius(),
+                box-shadow: box-shadow(500),
+                min-width: 80px
+            ),
+
+            wrapper: (
+                css: (
+                    box-shadow: box-shadow(),
+                    max-height: 320px
+                )
+            )
+        ),
+
+        table: (
+            css: (
+                // - Using Border Width To Match Table Borders
+                padding: border-size(500)
+            )
+        )
+    ),
+
+    // 'tooltip-section'
+    section: (
+        padding: size()
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function tooltip($key) {
+    @return component-get(tooltip $key);
+}

@@ -1,0 +1,44 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Tooltips
+ *
+ */
+
+.tooltip {
+    z-index: 8;
+
+    @include state(active) {
+        z-index: 9;
+
+        // Add Invisible Box To Increase Activation/Hover Area
+        // - Doesn't Need To Be Managed Through A Token
+
+        &::after,
+        > .tooltip-content--menu::after {
+            @include position(absolute, center);
+            @include size(calc(100% + #{tooltip(content spacer) * 2}));
+            content: '';
+            z-index: -1;
+        }
+    }
+
+
+    &-arrow {
+        margin: 0 -1px;
+        transform: rotate(90deg);
+    }
+
+    // Rotate Arrow Only If Parent Tooltip Is Active
+    @include state(active) {
+        :not(.tooltip) .tooltip-arrow,
+        > .tooltip-arrow {
+            transform: rotate(-90deg);
+        }
+    }
+
+    @import
+        'content',
+        'section'
+    ;
+}

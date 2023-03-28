@@ -1,0 +1,19 @@
+#!/bin/sh
+
+CURRENT_DIR=$PWD
+REPOSITORY=$1
+TARGET_DIR=$CURRENT_DIR/$2
+WORKING_DIR=$(mktemp -d -t dc-XXXXXXXXXX)
+
+# Pull + Cleanup
+cd $WORKING_DIR
+git init
+git pull $REPOSITORY
+rm -rf /.git
+
+# Return Home && Copy To Target Destination
+cd $CURRENT_DIR
+cp -Rf $WORKING_DIR/* $TARGET_DIR
+
+# Cleanup '$WORKING_DIR' Directory
+rm -rf $WORKING_DIR

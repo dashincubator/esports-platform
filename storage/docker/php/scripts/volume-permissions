@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Image Uploads
+mkdir -p /var/www/public/uploads
+chmod -R o+rw /var/www/public/uploads
+
+# Storage - Cache, Logs, etc.
+mkdir -p /var/www/storage/logs
+chmod -R o+rw /var/www/storage/logs
+
+mkdir -p /var/www/storage/system
+chmod -R o+rw /var/www/storage/system

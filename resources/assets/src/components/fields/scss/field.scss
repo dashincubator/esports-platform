@@ -1,0 +1,52 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Form Fields
+ *
+ *  Fields Were Originally Placed Within A '.form' Selector BUT Fields Are Not
+ *  Always Used Within A Form Tag So Here We Are.
+ *
+ */
+
+@import 'normalize';
+
+.field {
+    @include transition(background-color border-color box-shadow color opacity);
+    display: flex;
+    flex-direction: column;
+    opacity: field(opacity default);
+    position: relative;
+    z-index: 1;
+
+    @include state(hover) {
+        opacity: field(opacity hover);
+        z-index: 8;
+    }
+
+    @include state(active) {
+        opacity: field(opacity pressed);
+    }
+
+    &.tooltip {
+        @include state(hover) {
+            z-index: 8;
+        }
+
+        @include state(active) {
+            z-index: 9;
+        }
+    }
+
+
+    @import
+        'check',
+        'description',
+        'required',
+        'text',
+        'title'
+    ;
+}
+
+label.field {
+    cursor: pointer;
+}

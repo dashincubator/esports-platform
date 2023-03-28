@@ -1,0 +1,87 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Button Module Configuration
+ *
+ */
+
+@include component-set(button, (
+    // Used By Multiple Button Modifiers
+    border: (
+        size: (
+            modifiers: 'small',
+
+            default: border-size(),
+            small: border-size(300)
+        )
+    ),
+
+    // Color States
+    color: (
+        // 'black' 'grey' 'white' Manually Defined
+        modifiers: 'primary' 'red' 'secondary' 'blue' 'green' 'purple' 'yellow' 'misc',
+
+        manual: (
+            text: (
+                default:   color('text'),
+                highlight: color('text', 0.96),
+                pressed:   color('text' 500)
+            ),
+            'white': (
+                default:   color('white', 0.96),
+                highlight: color('white', 0.98),
+                pressed:   color('white')
+            )
+        )
+    ),
+
+    size: (
+        modifiers: badge large menu small tab,
+
+        badge: (
+            height: size() + (size(100) * 2),
+            padding: size(100)
+        ),
+        default: (
+            height: size() + (size(300) * 2),
+            padding: size(300)
+        ),
+        large: (
+            height: size() + (size(400) * 2),
+            padding: size(400)
+        ),
+        menu: (
+            height: size() + (size(400) * 2),
+            padding: size() size(500)
+        ),
+        small: (
+            height: size() + (size(200) * 2),
+            padding: size(200)
+        ),
+        tab: (
+            height: size() + (size(500) * 2),
+            padding: size(500)
+        )
+    ),
+
+    // 'button--width' - Assigned As 'min-width'
+    width: (
+        modifiers: 'large' 'small',
+
+        default: 200px,
+        large: 240px,
+        small: 160px
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function button($key) {
+    @return component-get(button $key);
+}

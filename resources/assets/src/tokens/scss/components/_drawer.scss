@@ -1,0 +1,35 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Drawer Module Configuration
+ *
+ */
+
+@include component-set(drawer, (
+    // 'drawers-close'
+    close: (
+        // Spacer Between Document Top & Right
+        spacer: container(spacer 500)
+    ),
+
+    // Used For Height If 'drawer--n' || 'drawer--s'
+    // Used For Width If 'drawer--w' || 'drawer--e'
+    size: (
+        default: calc(100% - #{container(spacer 500) * 2}),
+        max: 400px
+    ),
+
+    transition: 0.12s
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function drawer($key) {
+    @return component-get(drawer $key);
+}

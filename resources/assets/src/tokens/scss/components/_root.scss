@@ -1,0 +1,45 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Root Properties
+ *
+ */
+
+@include token-set(root, (
+    // h1, h2, h3, etc.
+    header: (
+        css: (
+            color: color('text' 500),
+            font-weight: font-weight(500)
+        )
+    ),
+
+    // html
+    html: (
+        css: (
+            background-color: color('grey'),
+            color: color('text'),
+            font-weight: font-weight(),
+            font-family: "'Montserrat', sans-serif",
+            letter-spacing: 0.04px,
+            min-width: 300px
+        )
+    ),
+
+    // '<p></p>'
+    p: (
+        margin-top: size()
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function root($key) {
+    @return token-get(root $key);
+}

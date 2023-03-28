@@ -1,0 +1,23 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Vertical/Column Card Group
+ *
+ *  Import Within Cards Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-column {
+    position: relative;
+    width: 100%;
+
+
+    > .card {
+        margin-top: card(group margin);
+        width: 100%;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}

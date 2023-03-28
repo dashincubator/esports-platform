@@ -1,0 +1,29 @@
+.--hidden {
+    display: none;
+
+    &-first-child {
+        &:first-child {
+            display: none;
+        }
+    }
+
+    &-inactive {
+        @include state(not-active) {
+            display: none;
+        }
+    }
+
+    &-last-child {
+        &:last-child {
+            display: none;
+        }
+    }
+
+    @each $breakpoint in app(breakpoints) {
+        @include breakpoint(max-width, $breakpoint) {
+            &-#{$breakpoint} {
+                display: none;
+            }
+        }
+    }
+}

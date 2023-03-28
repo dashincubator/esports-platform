@@ -1,0 +1,194 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Minimal Links Used In Numerous Modules
+ *
+ */
+
+.link {
+    @include apply-css(app(font default css));
+    @include transition(background-color border-color color opacity);
+    align-content: center;
+    cursor: pointer;
+    display: flex;
+    padding: first(link(size default padding)) 0;
+    position: relative;
+
+
+    // Default Full Padding Modifier
+    &--button {
+        padding: link(size default padding);
+    }
+
+    @each $size in link(size modifiers) {
+        &--#{$size} {
+            padding: first(link(size $size padding)) 0;
+        }
+
+        &--button-#{$size} {
+            padding: link(size $size padding);
+        }
+    }
+
+    &--border {
+        // Rounded Psuedo Element Border
+        // - ::after Used By Tooltip
+        &-bottom,
+        &-left,
+        &-right,
+        &-top {
+            &::before {
+                @include transition(border-color opacity transform);
+                border-color: inherit;
+                border-style: solid;
+                content: '';
+            }
+
+            @include state(default) {
+                &::before {
+                    opacity: 0;
+                }
+            }
+        }
+
+        &-bottom {
+            &::before {
+                @include position(absolute, bottom);
+                border-radius: link(border radius) link(border radius) 0 0;
+                border-width: link(border size default) 0 0 0;
+            }
+
+            @each $size in link(size modifiers) {
+                &.link--#{$size} {
+                    &:before {
+                        border-width: link(border size $size) 0 0 0;
+                    }
+                }
+
+                &.link--button-#{$size} {
+                    &:before {
+                        border-width: link(border size $size) 0 0 0;
+                    }
+                }
+            }
+
+            @include state(default) {
+                &::before {
+                    transform: translateY(link(border transform));
+                }
+            }
+        }
+
+        &-left {
+            &::before {
+                @include position(absolute, left);
+                border-radius: 0 link(border radius) link(border radius) 0;
+                border-width: 0 link(border size default) 0 0;
+            }
+
+            @each $size in link(size modifiers) {
+                &.link--#{$size} {
+                    &:before {
+                        border-width: 0 link(border size $size) 0 0;
+                    }
+                }
+
+                &.link--button-#{$size} {
+                    &:before {
+                        border-width: 0 link(border size $size) 0 0;
+                    }
+                }
+            }
+
+            @include state(default) {
+                &::before {
+                    transform: translateX(- link(border transform));
+                }
+            }
+        }
+
+        &-right {
+            &::before {
+                @include position(absolute, right);
+                border-radius: link(border radius) 0 0 link(border radius);
+                border-width: 0 0 0 link(border size default);
+            }
+
+            @each $size in link(size modifiers) {
+                &.link--#{$size} {
+                    &:before {
+                        border-width: 0 0 0 link(border size $size);
+                    }
+                }
+
+                &.link--button-#{$size} {
+                    &:before {
+                        border-width: 0 0 0 link(border size $size);
+                    }
+                }
+            }
+
+            @include state(default) {
+                &::before {
+                    transform: translateX(link(border transform));
+                }
+            }
+        }
+
+        &-top {
+            &::before {
+                @include position(absolute, top);
+                border-radius: 0 0 link(border radius) link(border radius);
+                border-width: 0 0 link(border size default) 0;
+            }
+
+            @each $size in link(size modifiers) {
+                &.link--#{$size} {
+                    &:before {
+                        border-width: 0 0 link(border size $size) 0;
+                    }
+                }
+
+                &.link--button-#{$size} {
+                    &:before {
+                        border-width: 0 0 link(border size $size) 0;
+                    }
+                }
+            }
+
+            @include state(default) {
+                &::before {
+                    transform: translateY(- link(border transform));
+                }
+            }
+        }
+    }
+
+    &--underline {
+        @include state(hover) {
+            text-decoration: underline;
+        }
+    }
+
+
+    > .button {
+        margin: (- first(button(size default padding))) 0;
+
+        @each $size in button(size modifiers) {
+            &--#{$size}{
+                margin: (- first(button(size $size padding))) 0;
+            }
+        }
+
+        &--more {
+            margin: 0;
+        }
+    }
+
+    @import
+        'colors',
+        'menu',
+        'scroller',
+        'title'
+    ;
+}

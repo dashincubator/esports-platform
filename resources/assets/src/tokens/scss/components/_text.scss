@@ -1,0 +1,49 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text Module Configuration
+ *
+ */
+
+@include component-set(text, (
+    // 'text-group > .text'
+    group: (
+        bullet: (
+            color: (
+                modifiers: 'black' 'white'
+            ),
+            size: 3px
+        ),
+        padding-right: size()
+    ),
+
+    // 'text-list'
+    list: (
+        // 'text-list text'
+        item: (
+            margin-vertical: (
+                modifiers: 'link',
+
+                default: (size(100) / 2),
+                link: size(100)
+            )
+        )
+    ),
+
+    // '.text-stats > .text'
+    stats: (
+        margin-top: size(600)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function text($key) {
+    @return component-get(text $key);
+}

@@ -1,0 +1,46 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  General Purpose Group
+ *
+ */
+
+.group {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+
+    // Offset Container By Margin Used
+    &.--margin-top {
+        margin-left: (- app(margin-top default) / 2);
+        margin-top: (- app(margin-top default));
+        width: calc(100% + #{app(margin-top default)});
+
+        @each $size in app(margin-top modifiers) {
+            &-#{$size} {
+                margin-left: (- app(margin-top $size) / 2);
+                margin-top: (- app(margin-top $size));
+                width: calc(100% + #{app(margin-top $size)});
+            }
+        }
+    }
+
+
+    &-item {
+        display: flex;
+        position: relative;
+
+        &.--margin-top {
+            margin-left: app(margin-top default) / 2;
+            margin-right: app(margin-top default) / 2;
+
+            @each $size in app(margin-top modifiers) {
+                &-#{$size} {
+                    margin-left: app(margin-top $size) / 2;
+                    margin-right: app(margin-top $size) / 2;
+                }
+            }
+        }
+    }
+}

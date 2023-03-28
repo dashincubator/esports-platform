@@ -1,0 +1,57 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Grid-Like Card List
+ *
+ *  Import Within Card Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+
+
+    @mixin width($count, $margin) {
+        width: calc(#{100% / $count} - #{$margin * ($count - 1) / $count});
+    }
+
+
+    > .card {
+        margin-top: card(group margin);
+
+        @include breakpoint(min-width, 1200px) {
+            @include width(4, card(group margin));
+
+            &:nth-child(-n+4) {
+                margin-top: 0;
+            }
+        }
+
+        @include breakpoint(between-width, 800px 1200px) {
+            @include width(3, card(group margin));
+
+            &:nth-child(-n+3) {
+                margin-top: 0;
+            }
+        }
+
+        @include breakpoint(between-width, 500px 800px) {
+            @include width(2, card(group margin));
+
+            &:nth-child(-n+2) {
+                margin-top: 0;
+            }
+        }
+
+        @include breakpoint(max-width, 500px) {
+            width: 100%;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Card Module Configuration
+ *
+ */
+
+@include component-set(card, (
+    // Spacer Between Each Card In 'card-column', 'card-grid', 'card-scroller'
+    group: (
+        margin: size(300),
+        padding: size(300)
+    ),
+
+    // 'card-section'
+    section: (
+        padding: (
+            modifiers: 'large',
+
+            default: size(500),
+            large: size(600)
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function card($key) {
+    @return component-get(card $key);
+}

@@ -1,0 +1,70 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Off Canvas Drawer
+ *
+ */
+
+.drawer {
+    @include transition(transform, drawer(transition));
+    cursor: default;
+    z-index: 1;
+
+
+    @include state(not-active) {
+        input[type='password'] {
+            display: none;
+        }
+    }
+
+
+    &--n,
+    &--s {
+        height: drawer(size default);
+        max-height: drawer(size max);
+        min-width: 100%;
+    }
+
+    &--e,
+    &--w {
+        min-height: 100%;
+        max-width: drawer(size max);
+        width: drawer(size default);
+    }
+
+    &--n {
+        @include position(absolute, 0 0 null 0);
+
+        @include state(not-active) {
+            position: fixed;
+            transform: translateY(-#{drawer(size max)});
+        }
+    }
+
+    &--e {
+        @include position(absolute, 0 0 null null);
+
+        @include state(not-active) {
+            position: fixed;
+            transform: translateX(#{drawer(size max)});
+        }
+    }
+
+    &--s {
+        @include position(absolute, null 0 0 0);
+
+        @include state(not-active) {
+            position: fixed;
+            transform: translateY(#{drawer(size max)});
+        }
+    }
+
+    &--w {
+        @include position(absolute, 0 null null 0);
+
+        @include state(not-active) {
+            position: fixed;
+            transform: translateX(-#{drawer(size max)});
+        }
+    }
+}

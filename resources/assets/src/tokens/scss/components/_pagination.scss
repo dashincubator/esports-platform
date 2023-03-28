@@ -1,0 +1,28 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Pagination Module Configuration
+ *
+ */
+
+@include component-set(pagination, (
+    // Switches To 'Full Width' Mode At This Breakpoint
+    breakpoint: 480px,
+
+    field: (
+        // Creates Gap Between Pagination Elements
+        margin-horizontal: 2px
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function pagination($key) {
+    @return component-get(pagination $key);
+}

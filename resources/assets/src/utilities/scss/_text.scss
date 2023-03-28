@@ -1,0 +1,132 @@
+.--text {
+
+    &-bold {
+        font-weight: font-weight(500);
+    }
+
+    &-bolder {
+        font-weight: font-weight(600);
+    }
+
+    &-linethrough {
+        opacity: 0.8;
+        text-decoration: line-through;
+    }
+
+    &-truncate {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &-unbold {
+        font-weight: font-weight();
+    }
+
+    &-uppercase {
+        font-weight: font-weight(500);
+        text-transform: uppercase;
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Color Utilities
+     *
+     */
+
+     @include color-modifiers(
+         color,
+         list-remove('green', join(color(modifiers), 'black' 'grey' 'misc' 'text' 'white')),
+         '&-{r}'
+     );
+
+     &-green {
+         color: darken(color('green' 500), 2%);
+     }
+
+     &-snapchat {
+         color: color('black' 500);
+     }
+
+     &-grey-300 {
+         color: color('grey' 300);
+     }
+
+     &-text-300 {
+         color: color('text' 300);
+     }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Positioning Utilities
+     *
+     */
+
+    @mixin text-align($value) {
+        text-align: $value;
+
+        @each $breakpoint in app(breakpoints) {
+            @include breakpoint(max-width, $breakpoint) {
+                &-#{$breakpoint} {
+                    text-align: $value;
+                }
+            }
+        }
+    }
+
+    &-center {
+        @include text-align(center);
+    }
+
+    @each $direction in left right {
+        &-#{$direction} {
+            @include text-align($direction);
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Size Utilities
+     *
+     */
+
+    @mixin css($size) {
+        @include apply-css(app(font $size css));
+
+        &-crop {
+            @include text-crop(app(font $size size), first-child last-child);
+        }
+
+        &-icon-crop {
+            @include text-crop(app(font $size css line-height), first-child last-child);
+        }
+    }
+
+    & {
+        @include css(default);
+    }
+
+    @each $size in app(font modifiers) {
+        &-#{$size} {
+            @include css($size);
+        }
+    }
+
+    // Loop Through Font Size Keys To Set Header Font Size + Line Height
+    $i: last( font-size-keys() );
+
+    @each $h in h1 h2 h3 h4 h5 h6 {
+        @at-root #{$h}#{&}-crop {
+            @include text-crop(font-size($i), first-child last-child);
+        }
+
+        $i: $i - token-weight(difference);
+    }
+}

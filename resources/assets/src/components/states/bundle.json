@@ -1,0 +1,8 @@
+{
+    "js": [
+        "js/activate.js",
+        "js/deactivate.js",
+        "js/state.js",
+        "js/toggle.js"
+    ]
+}

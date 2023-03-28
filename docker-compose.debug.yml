@@ -1,0 +1,30 @@
+# Dependent On 'docker-compose.yml'
+services:
+    php:
+        build:
+            args:
+                PHP_OPCACHE_REVALIDATE_FREQ: 2
+                PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
+
+    phpmyadmin:
+        container_name: phpmyadmin
+        depends_on:
+            - mariadb
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_ARBITRARY: 1
+            # PMA_PASSWORD: ${MYSQL_PASSWORD}
+            PMA_SOCKET: ${MYSQL_SOCKET}
+            # PMA_USER: ${MYSQL_USER}
+        restart: unless-stopped
+        ports:
+            - 8000:80
+        volumes:
+            - ./storage/docker/phpmyadmin/conf.d/base.ini:/usr/local/etc/php/conf.d/base.ini
+            - phpmyadmin:/var/www/html
+            - socket:${SOCKET_DIR}
+
+version: '3.7'
+
+volumes:
+    phpmyadmin:

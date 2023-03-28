@@ -1,0 +1,14 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Flex Column Container
+ *
+ */
+
+.columns {
+    align-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+}

@@ -1,0 +1,76 @@
+.index {
+    $border: border-size(500);
+    $height: 200px;
+    $spacer: size(500);
+
+    &-game {
+        @include size(164px, $height);
+        background: color('black' 500);
+        border-radius: border-radius();
+        box-shadow: 0 0 0 $border color('white');
+        flex: 0 0 auto;
+        margin: $border size() $border $border;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        &:last-child {
+            margin-right: $border;
+        }
+
+        @include state(active hover) {
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        @include state(hover) {
+            box-shadow: 0 0 0 $border color('black' 500);
+        }
+
+        @include state(active) {
+            box-shadow: 0 0 0 $border color('primary');
+            pointer-events: none;
+        }
+
+        &-stats {
+            @include position(absolute, bottom);
+            @include transition(opacity transform);
+            z-index: 1;
+        }
+
+        &-banner {
+            @include position(absolute, center);
+            @include size(110%);
+            @include transition(transform);
+            background-position: center;
+            background-size: cover;
+            pointer-events: none;
+            transform: translate(50%, 50%) scale(0.95);
+            z-index: 0;
+
+            &::after {
+                @include position(absolute, full);
+                background: linear-gradient(to top, color('black' 500, 0.64) 10%, color('black' 500, 0) 40%);
+                content: '';
+            }
+        }
+
+        &-stats {
+            padding: $spacer ($spacer - size(200));
+        }
+
+        @include state(active hover) {
+            .index-game {
+                &-banner {
+                    transform: translate(50%, 50%) scale(1);
+                }
+            }
+        }
+    }
+
+    &-header {
+        &-title {
+            font-size: 32px;
+        }
+    }
+}

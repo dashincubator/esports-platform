@@ -1,0 +1,17 @@
+&-matchfinder {
+    &-match {
+        @include transition(background border-radius box-shadow, 0.16s);
+
+        @include state(highlight) {
+            box-shadow: border-size(500) 0 0 color('primary') inset;
+
+            .ladder-matchfinder-match-more {
+                color: color('primary');
+            }
+        }
+
+        &-more {
+            left: (- size(100) - 2px);
+        }
+    }
+}

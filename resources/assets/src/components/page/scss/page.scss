@@ -1,0 +1,44 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Page Wrapper
+ *
+ */
+
+.page {
+    min-height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+
+
+    &-header {
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &,
+        &-category,
+        &-subtitle,
+        &-title {
+            display: block;
+            position: relative;
+            width: 100%;
+        }
+
+        &-category {
+            color: color('text' 300);
+            margin-bottom: page(header category margin-bottom);
+        }
+
+        &-subtitle {
+            color: color('text' 300);
+            margin-top: page(header subtitle margin-top);
+
+            &:empty {
+                margin-top: 0;
+            }
+        }
+    }
+
+}

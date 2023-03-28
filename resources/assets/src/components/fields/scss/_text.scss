@@ -1,0 +1,394 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Input, Textarea, Select Fields
+ *
+ *  Import Within Field Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-text {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+    // On Active Grow Effect
+    &::after {
+        @include position(absolute, bottom);
+        @include transition(opacity transform);
+        border-color: app(border color default);
+        border-radius: border-radius() border-radius() 0 0;
+        border-style: solid;
+        border-width: field(text border grow) 0 0;
+        content: '';
+        height: field(text border grow);
+        opacity: 0;
+        overflow: hidden;
+        transform: scaleX(0);
+        transform-origin: bottom center;
+
+        #{state(active, '.field')} & {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        // Modifiers
+        @include color-modifiers(border-color, field(color modifiers), '.field--{r} &');
+    }
+
+    // Psuedo Element Box Shadow
+    &::before {
+        @include position(absolute, full);
+        @include transition(box-shadow opacity);
+        border-radius: inherit;
+        box-shadow: box-shadow();
+        content: '';
+        opacity: 0.4;
+
+        #{state(active, '.field')} & {
+            opacity: 1;
+        }
+
+        #{state(hover, '.field')} & {
+            box-shadow: box-shadow(500);
+            opacity: 0.8;
+        }
+    }
+
+
+    // Input Field, Select Field Design
+    .field-mask {
+        @include apply-css(app(font default css));
+        @include transition(border-color);
+        border-color: app(border color default);
+        border-radius: inherit;
+        border-style: solid;
+        border-width: 0 0 field(text border field);
+        color: field(color text);
+        padding: first(field(padding)) 0;
+        position: relative;
+        width: 100%;
+
+        &:invalid,
+        &:required {
+            box-shadow: none;
+        }
+
+        // Modifiers
+        @include color-modifiers(border-color, field(color modifiers), '#{state(active, '.field--{r}')} &');
+        @include color-modifiers(color, field(color modifiers), '.field--color.field--{r} &');
+        @include color-modifiers(color, field(color modifiers), '#{state(active, '.field--color-active.field--{r}')} &');
+
+        &--button {
+            &-left {
+                border-left-width: button(size default height);
+            }
+
+            &-right {
+                border-right-width: button(size default height);
+            }
+
+            @include color-modifiers(border-left-color, field(color modifiers), '.field--{r} &');
+        }
+    }
+
+
+    // Use Margin Only When Title Is Present
+    .field--border .field-title ~ &,
+    .field--grey .field-title ~ &,
+    .field--white .field-title ~ & {
+        margin-top: field(text margin-top);
+    }
+
+    // Grey/White Field Modifiers
+    .field--grey &,
+    .field--white & {
+        border-radius: border-radius() border-radius() 0 0;
+
+        .field-mask {
+            border-color: rgba(app(border color default), 0.48);
+            padding: field(padding);
+        }
+    }
+
+    // Rounded Fields With No Borders
+    .field--basic & {
+        border-radius: border-radius();
+
+        &::after,
+        &::before {
+            display: none;
+        }
+
+        .field-mask {
+            border: 0;
+        }
+    }
+
+    // Full Border Fields
+    .field--border & {
+        border-radius: border-radius();
+
+        &::after {
+            display: none;
+        }
+
+        .field-mask {
+            border-width: field(text border field);
+            padding: field(padding);
+
+            &--button {
+                &-left {
+                    border-left-width: button(size default height);
+                }
+
+                &-right {
+                    border-right-width: button(size default height);
+                }
+            }
+        }
+    }
+
+    .field--curved & {
+        border-radius: border-radius(800);
+    }
+
+    .field--grey & {
+        .field-mask {
+            background-color: color('grey');
+        }
+    }
+
+    // Display Title Next To Field
+    .field--horizontal & {
+        clear: unset;
+        width: auto;
+    }
+
+    // Remove Even Default Styles
+    .field--transparent & {
+        .field-mask {
+            border: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .field--white & {
+        .field-mask {
+            background-color: color('white');
+        }
+    }
+
+    &-button {
+        @include position(absolute, vertical);
+        @include size(button(size default height), 100%);
+        z-index: 1;
+
+        &::after {
+            @include position(absolute, 0 null 0 null);
+            @include size(4px, 100%);
+            border-color: inherit;
+            border-style: solid;
+            content: '';
+        }
+
+        &--left {
+            border-radius: border-radius() 0 0 border-radius();
+            left: 0;
+
+            &::after {
+                border-bottom-left-radius: inherit;
+                border-top-left-radius: inherit;
+                border-width: 1px 0 1px 2px;
+                left: (button(size default height) - 2px);
+            }
+        }
+
+        &--right {
+            border-radius: 0 border-radius() border-radius() 0;
+            right: 0;
+
+            &::after {
+                border-bottom-right-radius: inherit;
+                border-top-right-radius: inherit;
+                border-width: 1px 2px 1px 0px;
+                right: (button(size default height) - 2px);
+            }
+        }
+
+        @include color-modifiers(background-color border-color, field(color modifiers), '.field--{r} &');
+
+        .icon {
+            @include position(absolute, center);
+        }
+    }
+
+    // Truncate Overflowing Input/Select Text
+    &--input,
+    &--select {
+        .field-mask {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    &--input {
+        // Necessary To Maintain Height Of Hidden Password Fields In Floating Modals
+        // - Password Managers Cause Problems When Fields Are Not Using 'display:hidden' On Password Fields
+        min-height: icon(size default) + (first(field(padding)) * 2);
+
+        .field--border & {
+            height: icon(size default) + (first(field(padding)) * 2) + (field(text border field) * 2);
+        }
+
+        .field-icon {
+            @include position(absolute, vertical);
+            z-index: 1;
+
+            &[data-click='field-password'] {
+                cursor: pointer;
+                pointer-events: auto;
+            }
+
+            &:not(.field-icon--right) {
+                left: 0;
+
+                ~ .field-mask {
+                    padding-left: icon(size default) + (first(field(padding)) / 2);
+                }
+            }
+
+            &--right {
+                right: 0;
+
+                ~ .field-mask {
+                    padding-right: icon(size default) + (first(field(padding)) / 2);
+                }
+            }
+
+            .field--border &,
+            .field--grey &,
+            .field--white & {
+                &:not(.field-icon--right) {
+                    left: first(field(padding));
+
+                    ~ .field-mask {
+                        padding-left: icon(size default) + first(field(padding)) * 1.5;
+                    }
+                }
+
+                &--right {
+                    right: first(field(padding));
+
+                    ~ .field-mask {
+                        padding-right: icon(size default) + first(field(padding)) * 1.5;
+                    }
+                }
+            }
+        }
+
+        .field-mask {
+            cursor: text;
+
+            &[type='number'] {
+                appearance: textfield;
+                -moz-appearance: textfield;
+                -webkit-appearance: textfield;
+            }
+        }
+    }
+
+    &--select {
+        cursor: pointer;
+
+        .field-mask {
+            padding-right: field(select padding-right);
+            pointer-events: none;
+
+            // Down Arrow
+            &::after {
+                @include position(absolute, null 1px calc(50% + 1px) null);
+                @include size(6px);
+                border-color: inherit;
+                border-style: solid;
+                border-width: 0 2px 2px 0;
+                content: '';
+                transform: translateY(50%) rotate(45deg);
+            }
+
+            // Adjust Right Spacers For Down Arrow
+            .field--border &,
+            .field--grey &,
+            .field--white & {
+                padding-right: field(select large padding-right);
+
+                &::after {
+                    right: field(select large arrow right) - 1px;
+                }
+            }
+
+            .field--transparent & {
+                padding-right: field(select padding-right);
+
+                &::after {
+                    right: 1px;
+                }
+            }
+        }
+
+        .field-tag {
+            @include position(absolute, 0 null null 0);
+            @include size(0);
+            appearance: none;
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+    }
+
+    &--textarea {
+        .field-mask {
+            cursor: text;
+            height: size(800) * 2;
+            resize: vertical;
+
+            &--height {
+                height: (first(field(padding)) * 2) + (font-size() * divide(icon(size default), font-size()));
+            }
+        }
+
+        // JS Autoresizes Height Of Element
+        .field-tag[data-keydown='field-autoresize'] {
+            @include transition(border-color height);
+            overflow: hidden;
+            resize: none;
+        }
+    }
+
+    &--upload {
+        .field-mask {
+            border-style: dashed;
+            cursor: pointer;
+            text-align: center;
+            z-index: 0;
+
+            b {
+                color: color('primary');
+            }
+        }
+
+        .field-tag {
+            @include position(absolute, top);
+            @include size(100%, calc(100% + 1px));
+            appearance: none;
+            cursor: pointer;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0 0 0 100%;
+            z-index: 1;
+        }
+    }
+}

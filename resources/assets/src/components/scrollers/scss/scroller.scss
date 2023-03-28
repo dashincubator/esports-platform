@@ -1,0 +1,49 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Horizontal Scroll Wrapper
+ *
+ */
+
+.scroller {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+
+
+    &-content {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        position: relative;
+        width: 100%;
+        z-index: 1;
+
+        // Push Scrollbar Outside Of View
+        // - Updated By JS When Scrollbar Is Not 17px
+        margin-bottom: (- 17px);
+
+
+        &,
+        &-wrapper {
+            align-items: flex-start;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+
+        &--center {
+            justify-content: center;
+        }
+
+
+        &-wrapper {
+            flex: 0 0 auto;
+            min-width: 100%;
+
+            &--center {
+                justify-content: center;
+            }
+        }
+    }
+}

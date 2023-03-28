@@ -1,0 +1,71 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Basic svg Icons
+ *
+ */
+
+.icon {
+    @include size(icon(size default));
+    color: inherit;
+    display: flex;
+    flex: 0 0 auto;
+    pointer-events: none;
+
+
+    @each $size in icon(size modifiers) {
+        &--#{$size} {
+            @include size(icon(size $size));
+
+            .button > &,
+            .link > & {
+                margin: (icon(size default) - icon(size $size)) / 2;
+            }
+        }
+    }
+
+
+    &.tooltip {
+        pointer-events: all;
+    }
+
+
+    &--rotate45 {
+        transform: rotate(45deg);
+    }
+
+    &--rotate90 {
+        transform: rotate(90deg);
+    }
+
+    &--rotate135 {
+        transform: rotate(135deg);
+    }
+
+    &--rotate180 {
+        transform: rotate(180deg);
+    }
+
+    &--rotate225 {
+        transform: rotate(225deg);
+    }
+
+    &--rotate270 {
+        transform: rotate(270deg);
+    }
+
+    &--rotate315 {
+        transform: rotate(315deg);
+    }
+
+    &--rotate360 {
+        transform: rotate(360deg);
+    }
+
+
+    svg {
+        @include size(100%);
+        color: currentColor;
+        fill: currentColor;
+    }
+}

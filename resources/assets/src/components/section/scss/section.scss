@@ -1,0 +1,48 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Section Module
+ *
+ */
+
+.section {
+    align-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+
+
+    &--margin-top {
+        margin-top: section(margin-top default);
+
+        &.--border-top {
+            @include modifiers(border(size modifiers), '&' '&-{r}') {
+                padding-top: section(margin-top default);
+
+                &:first-child {
+                    border-top: unset;
+                    padding-top: 0;
+                }
+            }
+        }
+
+        @each $modifier in section(margin-top modifiers) {
+            &-#{$modifier} {
+                margin-top: section(margin-top $modifier);
+
+                &.--border-top {
+                    @include modifiers(border(size modifiers), '&' '&-{r}') {
+                        padding-top: section(margin-top $modifier);
+
+                        &:first-child {
+                            border-top: unset;
+                            padding-top: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.--icon {
+    @each $direction in 'top' 'right' 'bottom' 'left' {
+        &-#{$direction} {
+            padding-#{$direction}: icon(size default) + app(icon padding);
+            position: relative;
+        }
+
+        @each $size in icon(size modifiers) {
+            &-#{$size}-#{$direction} {
+                padding-#{$direction}: icon(size $size) + app(icon padding);
+                position: relative;
+            }
+        }
+
+        @each $breakpoint in app(breakpoints) {
+            @include breakpoint(max-width, $breakpoint) {
+                &-#{$direction}-hidden-#{$breakpoint} {
+                    padding-#{$direction}: 0;
+                }
+            }
+        }
+    }
+}

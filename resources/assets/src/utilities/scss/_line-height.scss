@@ -1,0 +1,8 @@
+.--line-height {
+
+    @each $weight in 400 500 600 {
+        &-#{$weight} {
+            line-height: line-height($weight);
+        }
+    }
+}

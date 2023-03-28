@@ -1,0 +1,23 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Horizontally Scrolling Cards
+ *
+ *  Import Within Cards Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-scroller {
+    .card {
+        flex: 0 0 auto;
+        margin:(card(group margin) / 2);
+
+        &:first-child {
+            margin-left: 0;
+        }
+        
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

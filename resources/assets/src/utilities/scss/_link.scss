@@ -1,0 +1,13 @@
+.--link {
+
+    // Add A Fixed Height To Element Based On Size Of Link In Use
+    &-height {
+        height: link(size default height);
+    }
+
+    @each $size in link(size modifiers) {
+        &-#{$size}-height {
+            height: link(size $size height);
+        }
+    }
+}

@@ -1,0 +1,74 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Accordion
+ *
+ */
+
+.accordion {
+    @include transition(max-height opacity overflow);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    @include state(hover active) {
+        overflow: visible;
+    }
+
+    @include state(active) {
+        opacity: 1;
+    }
+
+
+    &.--border {
+        border-radius: 0 0 border-radius() border-radius();
+        margin-top: (- border(size default));
+
+        @include state(not-active) {
+            margin-bottom: (- border(size default));
+        }
+
+        @each $size in border(size modifiers) {
+            &-#{$size} {
+                border-radius: 0 0 border-radius() border-radius();
+                margin-top: (- border(size $size));
+
+                @include state(not-active) {
+                    margin-bottom: (- border(size $size));
+                }
+            }
+        }
+    }
+
+
+    &--noanimation {
+        transition: 0s;
+    }
+
+
+    &-arrow {
+        transform: rotate(90deg);
+
+        // Rotate Arrow Only If Parent Accordion Is Active
+        #{state(active, '[data-accordion]')} > &,
+        #{state(active, '[data-accordion]')} :not([data-accordion]) > & {
+            transform: rotate(-90deg);
+
+            &.--absolute-vertical {
+                &-left,
+                &-right {
+                    transform: rotate(-90deg) translateX(-50%);
+                }
+            }
+        }
+
+        &.--absolute-vertical {
+            &-left,
+            &-right {
+                transform: rotate(90deg) translateX(50%);
+            }
+        }
+    }
+}

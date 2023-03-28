@@ -1,0 +1,103 @@
+.footer {
+    position: relative;
+    width: 100%;
+    z-index: 0;
+
+    &::after {
+        @include position(absolute, null 0 50% 0);
+        @include size(100%, 80vh);
+        background:
+            linear-gradient(to top, color('grey', 0.4) 0%, color('grey', 0) 50%),
+            linear-gradient(to top right, color('grey', 0.4) 0%, color('grey', 0) 40%),
+            linear-gradient(to top left, color('grey', 0.4) 0%, color('grey', 0) 40%);
+        content: '';
+        z-index: -2;
+    }
+
+  
+    &-background {
+        @include position(absolute, horizontal);
+        filter: blur(3px);
+        bottom: size(100);
+        opacity: 0.04;
+        max-width: 92%;
+        pointer-events: none;
+        width: 100%;
+        z-index: -1;
+
+        @include breakpoint(max-width, 1000px) {
+            display: none;
+        }
+    }
+
+    &-content {
+        background-color: color('black' 500);
+        padding: size(800) 0 (size(800) * 2);
+        width: 100%;
+        z-index: 1;
+
+        @include breakpoint(max-width, 600px) {
+            padding-bottom: (size(600) * 2);
+        }
+    }
+
+    &-copyright {
+        color: color('grey' 500);
+        margin-top: size(500);
+    }
+
+    &-esportsplus {
+        height: size(700);
+    }
+
+    &-foreground {
+        max-width: 600px;
+        pointer-events: none;
+        width: 30%;
+        z-index: 3;
+
+        @include breakpoint(min-width, 600px) {
+            min-width: 400px;
+        }
+
+        @include breakpoint(between-width, 640px 600px) {
+            min-width: 320px;
+        }
+
+        @include breakpoint(between-width, 420px 640px) {
+            min-width: 240px;
+        }
+
+        @include breakpoint(max-width, 420px) {
+            min-width: 160px;
+        }
+
+        &--left {
+            @include position(absolute, null null 0 0);
+        }
+
+        &--right {
+            @include position(absolute, null 0 0 null);
+        }
+    }
+
+    &-links {
+        margin-top: size(300);
+        width: 100%;
+    }
+
+    $spacer: size(200);
+
+    &-mask {
+        color: color('black' 500);
+        margin: 0 (- $spacer) (- $spacer);
+        width: calc(100% + #{$spacer * 2});
+        z-index: 2;
+
+        svg {
+            @include size(100%, auto);
+            color: currentColor;
+            fill: currentColor;
+        }
+    }
+}

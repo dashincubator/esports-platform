@@ -1,0 +1,66 @@
+$height: size(700);
+
+.header {
+    @include position(absolute, top);
+    padding: container(spacer) 0;
+    z-index: 2;
+
+    @include breakpoint(min-width, container(breakpoint)) {
+        padding: container(spacer 500) 0;
+    }
+
+    &-item {
+        margin-right: size(500);
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &-logo {
+        height: $height;
+
+        &:not(&--org) {
+            @include breakpoint(max-width, 600px) {
+                overflow: hidden;
+                width: 52px;
+            }
+        }
+
+        &--org &-image {
+            height: $height + size(500);
+            margin: (- (size(500) / 2)) 0;
+        }
+
+        &-image {
+            height: 100%;
+        }
+    }
+
+    &-social {
+        margin-left: size();
+    }
+
+    // Used On Pages To Shift Content Below Header
+    &-spacer {
+        height: $height;
+        margin: container(spacer) 0 0;
+        width: 100%;
+
+        &--full {
+            margin: container(spacer) 0;
+        }
+
+        @include breakpoint(min-width, container(breakpoint)) {
+            margin: container(spacer 500) 0 0;
+
+            &--full {
+                margin: container(spacer 500) 0;
+            }
+        }
+    }
+
+    @import
+        'user'
+    ;
+}

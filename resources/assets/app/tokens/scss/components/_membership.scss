@@ -1,0 +1,28 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Membership Icon Configuration
+ *
+ */
+
+@include component-set(membership, (
+    size: (
+        modifiers: 'large' 'small',
+
+        default: 28px,
+        large: size(600),
+        small: size(500)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function membership($key) {
+    @return component-get(membership $key);
+}

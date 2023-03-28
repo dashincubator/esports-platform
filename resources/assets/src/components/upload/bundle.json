@@ -1,0 +1,7 @@
+{
+    "js": [
+        "js/onchange.js",
+        "js/update.js"
+    ],
+    "scss": "scss/upload.scss"
+}

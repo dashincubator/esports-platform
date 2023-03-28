@@ -1,0 +1,60 @@
+{
+    "name": "GAMRS",
+    "short_name": "GAMRS",
+    "start_url": "/",
+    "description": "Play Games. Win Money. - Play for fun in our free play Ladders, add a wager to any match - no fee. Compete in our weekly Leagues for cash and prizes, or battle through our Tournaments to win it all. ",
+    "display": "standalone",
+    "lang": "en-US",
+    "theme_color": "#e0ebf7",
+    "background_color":"#e0ebf7",
+    "icons": [
+        {
+            "purpose": "any maskable",
+            "src": "icons/48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any maskable",
+            "src": "icons/72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any maskable",
+            "src": "icons/96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any maskable",
+            "src": "icons/144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any maskable",
+            "src": "icons/168.png",
+            "sizes": "168x168",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any maskable",
+            "src": "icons/192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any maskable",
+            "src": "icons/256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any maskable",
+            "src": "icons/512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

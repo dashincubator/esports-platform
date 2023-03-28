@@ -1,0 +1,72 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Link Color Variations
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&--button {
+    @each $color in link(color button modifiers) {
+        &-#{$color} {
+            @include state(highlight) {
+                background-color: color($color 300);
+            }
+
+            @include state(pressed) {
+                background-color: color($color 500);
+            }
+
+            &[data-accordion] {
+                @include state(active) {
+                    background-color: color($color 300);
+                }
+
+                @include state(default) {
+                    background-color: color($color 300, 0.64);
+                }
+
+                @include state(hover) {
+                    background-color: color($color 300, 0.80);
+                }
+
+                @include state(pressed) {
+                    background-color: color($color 300, 0.48);
+                }
+            }
+        }
+    }
+}
+
+@each $color, $states in link(color manual) {
+    &--#{$color} {
+        border-color: link(color manual $color default);
+        color: link(color manual $color default);
+
+        @include state(highlight) {
+            border-color: link(color manual $color highlight);
+            color: link(color manual $color highlight);
+        }
+
+        @include state(pressed) {
+            border-color: link(color manual $color pressed);
+            color: link(color manual $color pressed);
+        }
+    }
+}
+
+@each $color in link(color modifiers) {
+    @if (type-of(color($color)) == map) {
+        @each $name, $hex in color($color) {
+            &--#{$name} {
+                @include link-color($hex, lighten($hex, 3.2%), darken($hex, 3.2%));
+            }
+        }
+    }
+    @else {
+        &--#{$color} {
+            @include link-color(color($color 400), color($color 300), color($color 500));
+        }
+    }
+}

@@ -1,0 +1,42 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Alert Notifications
+ *
+ *  Anchors Module Provides Positioning
+ *
+ */
+
+.alert {
+    background-color: color('white');
+    border-radius: 0 border-radius() border-radius() 0;
+    box-shadow: box-shadow(300);
+    max-width: calc(100% - #{anchor(spacer) * 2});
+    overflow: hidden;
+    padding: alert(padding) alert(padding) alert(padding) last(alert(padding)) + alert(close width inactive);
+    width: alert(width default);
+
+    @include state(not-active) {
+        transform: translateY(-50%);
+    }
+
+
+    @include state(hover-override pressed-override) {
+        .alert-close {
+            transform: scaleX(1);
+
+            .icon {
+                opacity: 1;
+            }
+        }
+
+        .alert-messages {
+            transform: translateX(#{alert(close width active)});
+        }
+    }
+
+    @import
+        'close',
+        'messages'
+    ;
+}

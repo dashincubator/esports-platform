@@ -1,0 +1,84 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Table Elements
+ *
+ */
+
+.table {
+    align-items: flex-start;
+    border-radius: border-radius();
+    box-shadow: box-shadow(300);
+    display: flex;
+    flex-flow: column;
+    min-width: 100%;
+    position: relative;
+
+    @include state(hover) {
+        z-index: 9;
+    }
+
+
+    &--margin-top {
+        margin-top: table(margin-top);
+    }
+
+    &--tooltip {
+        flex: 0 0 auto;
+        overflow: hidden;
+
+        .table-row {
+            border-radius: 0;
+        }
+    }
+
+
+    &-header,
+    &-row {
+        display: flex;
+        position: relative;
+        width: 100%;
+
+        .table--scroller &,
+        .table--tooltip & {
+            min-width: 100%;
+            width: auto;
+        }
+    }
+
+    @import
+        'header',
+        'item',
+        'row'
+    ;
+
+    @each $element in 'header' 'row' {
+        &-#{$element}--more {
+            @each $direction in 'left' 'right' {
+                &-#{$direction} {
+                    padding-#{$direction}: button(size large height) + table(row padding default);
+
+                    @each $size in table(header padding modifiers) {
+                        &.table-#{$element}--#{$size} {
+                            padding-#{$direction}: button(size large height) + table(row padding $size);
+                        }
+                    }
+
+                    @each $breakpoint in app(breakpoints) {
+                        @include breakpoint(max-width, $breakpoint) {
+                            &-#{$breakpoint} {
+                                padding-#{$direction}: button(size large height) + table(row padding default);
+
+                                @each $size in table(header padding modifiers) {
+                                    &.table-#{$element}--#{$size} {
+                                        padding-#{$direction}: button(size large height) + table(row padding $size);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

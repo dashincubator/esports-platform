@@ -1,0 +1,28 @@
+.match {
+    @include breakpoint(max-width, 1200px) {
+        &-columns {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &-status {
+        @include position(absolute, 0 null null calc(100% + #{size(100)}));
+        box-shadow: box-shadow();
+
+        &--complete {
+            background-color: color('black' 500);
+        }
+
+        &--disputed {
+            background-color: color('red');
+        }
+
+        &--active {
+            background-color: color('green');
+        }
+    }
+
+    @import
+        'vs'
+    ;
+}

@@ -1,0 +1,40 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Notification Bubble
+ *
+ */
+
+.bubble {
+    @include circle(bubble(size default));
+    border-style: solid;
+    border-width: bubble(border size);
+
+
+    @include color-modifiers(background-color, bubble(color modifiers));
+
+    @each $size in bubble(size modifiers) {
+        &--#{$size} {
+            @include size(bubble(size $size));
+        }
+    }
+
+
+    @each $direction in 'top' 'bottom' {
+        &--#{$direction} {
+            &-left,
+            &-right {
+                position: absolute;
+                #{$direction}: (- bubble(size default) / 2);
+            }
+
+            &-left {
+                left: (- bubble(size default) / 2);
+            }
+
+            &-right {
+                right: (- bubble(size default) / 2);
+            }
+        }
+    }
+}

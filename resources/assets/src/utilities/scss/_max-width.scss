@@ -1,0 +1,11 @@
+.--max-width {
+    &-200px {
+        max-width: 200px;
+    }
+
+    @each $breakpoint in app(breakpoints) {
+        &-#{$breakpoint} {
+            max-width: $breakpoint;
+        }
+    }
+}

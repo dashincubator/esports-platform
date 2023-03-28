@@ -1,0 +1,46 @@
+.scrolltop {
+    @include transition(background-color opacity transform);
+    background-color: color('grey');
+    border-radius: border-radius(900);
+    box-shadow: box-shadow();
+    padding: border-size();
+
+    // Pseudo Element Box Shadow
+    &::before {
+        @include position(absolute, full);
+        @include transition(box-shadow opacity);
+        border-radius: inherit;
+        box-shadow: box-shadow();
+        content: '';
+        opacity: 0;
+        z-index: 0;
+    }
+
+    @include state(hover-override) {
+        background-color: color('primary');
+
+        &::before {
+            box-shadow: box-shadow(500);
+            opacity: 1;
+        }
+    }
+
+    @include state(not-active) {
+        transform: translateY(size(800));
+    }
+
+    @include state(pressed) {
+        &::before {
+            opacity: 0;
+        }
+    }
+}
+
+.drawers,
+.modals {
+    @include state(active) {
+        ~ .anchors .scrolltop {
+            opacity: 0;
+        }
+    }
+}

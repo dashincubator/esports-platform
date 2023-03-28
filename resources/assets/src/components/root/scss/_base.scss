@@ -1,0 +1,50 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Base Stylesheet
+ *
+ */
+
+body,
+html {
+    @include size(100%);
+    overflow-x: hidden;
+}
+
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @if root(html css) {
+        @include apply-css(root(html css));
+    }
+
+    @if root(html css font-size) == false {
+        @include line-height(app(font default size));
+        font-size: app(font default size);
+    }
+
+    *,
+    *::after,
+    *::before {
+        box-sizing: border-box;
+        transition: inherit;
+    }
+}
+
+html {
+    // Prevent Page Load Flash Caused By Overlays/Transitions
+    &:not(.html--ready) {
+        *,
+        *::after,
+        *::before {
+            transition: all 0s;
+        }
+    }
+}
+
+// Fixes Cross Browser/Device Delegated Click Issues (ios, opera)
+[data-click] {
+    cursor: pointer;
+}

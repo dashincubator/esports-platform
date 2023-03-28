@@ -1,0 +1,34 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Store Component Tokens In 'components' '$tokens' Map Key
+ *
+ */
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function component-get($key) {
+    @return token-get(components $key);
+}
+
+
+/** 
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+@mixin component-merge($key, $value) {
+    @include token-merge(components $key, $value);
+}
+
+@mixin component-set($key, $value) {
+    @include token-set(components $key, $value);
+}

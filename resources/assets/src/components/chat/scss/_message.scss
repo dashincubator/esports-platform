@@ -1,0 +1,37 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Chat Message
+ *
+ */
+
+&-message {
+    margin-top: chat(message margin-top);
+    padding-left: 0;
+    position: relative;
+    width: 100%;
+
+    &-details,
+    &-text {
+        clear: both;
+        position: relative;
+        width: 100%;
+        word-wrap: break-word;
+    }
+
+    &-avatar {
+        @include circle(chat(avatar size));
+        @include position(absolute, 0 null null 0);
+        box-shadow: box-shadow();
+        font-size: font-size(500);
+        font-weight: font-weight(500);
+
+        @include breakpoint(max-width, 600px) {
+            display: none;
+        }
+    }
+
+    &-text {
+        margin-top: chat(message text margin-top);
+    }
+}

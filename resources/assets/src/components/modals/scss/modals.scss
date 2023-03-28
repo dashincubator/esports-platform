@@ -1,0 +1,54 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Modals Container
+ *
+ */
+
+.modals {
+    @include position(absolute, full);
+    @include transition(opacity, modal(transition));
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    pointer-events: auto;
+    z-index: 8;
+
+    @include state(not-active) {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+    &--black {
+        background-color: color('black' 500, 0.8);
+    }
+
+    &--grey {
+        background-color: color('grey', 0.98);
+
+        .modals-close {
+            color: color('text' 500);
+        }
+    }
+
+
+    $half: modal(close spacer) / 2;
+    $horizontal: 2px;
+
+    &-close {
+        @include position(fixed, modal(close spacer) (modal(close spacer) - $horizontal) null null);
+        color: color('white');
+        pointer-events: none;
+        z-index: 3;
+
+        @include breakpoint(max-width, 1000px) {
+            margin: (- $half) (- $half - $horizontal);
+        }
+
+        @include breakpoint(max-width, 600px) {
+            display: none;
+        }
+    }
+}

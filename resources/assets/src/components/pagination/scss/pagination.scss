@@ -1,0 +1,52 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Page Switcher
+ *
+ */
+
+.pagination {
+    width: 100%;
+
+    &-controls,
+    &-text {
+        @include breakpoint(max-width, pagination(breakpoint)) {
+            width: 100%;
+        }
+    }
+
+    &-subtext,
+    &-text {
+        @include breakpoint(max-width, pagination(breakpoint)) {
+            text-align: center;
+        }
+    }
+
+    &-controls {
+        display: flex;
+    }
+
+    &-details {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        @include breakpoint(min-width, pagination(breakpoint)) {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &-field {
+        margin-left: pagination(field margin-horizontal);
+        margin-right: pagination(field margin-horizontal);
+
+        @include state(default) {
+            z-index: 0;
+        }
+
+        @include breakpoint(max-width, pagination(breakpoint)) {
+            width: calc(100% - #{button(size large height) * 2} - #{pagination(field margin-horizontal) * 2})
+        }
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "js": [
+        "js/app.js",
+
+        "js/dom/id.js",
+        "js/dom/names.js",
+        "js/dom/refs.js",
+        "js/dom/update.js",
+
+        "js/events/blur.js",
+        "js/events/change.js",
+        "js/events/click.js",
+        "js/events/focus.js",
+        "js/events/hover.js",
+        "js/events/keydown.js",
+        "js/events/keyup.js",
+        "js/events/mousedown.js",
+        "js/events/mousemove.js",
+        "js/events/mouseup.js",
+        "js/events/scroll.js",
+        "js/events/submit.js",
+        "js/events/touchcancel.js",
+        "js/events/touchend.js",
+        "js/events/touchmove.js",
+        "js/events/touchstart.js",
+        "js/events/wheel.js",
+
+        "js/node/attribute.js",
+        "js/node/classname.js",
+        "js/node/html.js",
+        "js/node/siblings.js",
+        "js/node/style.js",
+        "js/node/text.js",
+        "js/node/update.js",
+
+        "js/render/html.js",
+        "js/render/template.js",
+
+        "js/stages/components.js",
+        "js/stages/ready.js",
+        "js/stages/resize.js",
+        "js/stages/trigger.js",
+
+        "js/directive.js",
+        "js/dom.js",
+        "js/emitter.js",
+        "js/node.js",
+        "js/pubsub.js",
+        "js/render.js",
+        "js/throttle.js"
+    ],
+    "scss": "scss/core.scss"
+}

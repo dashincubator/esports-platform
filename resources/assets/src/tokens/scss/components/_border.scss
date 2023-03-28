@@ -1,0 +1,28 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Border Module Configuration
+ *
+ */
+
+@include component-set(border, (
+    size: (
+        modifiers: 'large' 'small',
+
+        default: border-size(),
+        large: border-size(500),
+        small: border-size(300)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function border($key) {
+    @return component-get(border $key);
+}

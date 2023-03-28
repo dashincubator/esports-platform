@@ -1,0 +1,32 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Columns Module Configuration
+ *
+ */
+
+@include component-set(columns, (
+    padding: size(500),
+
+    width: (
+        fixed: (
+            modifiers: 'large' 'small',
+
+            small: 240px,
+            default: 320px,
+            large: 400px
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function columns($key) {
+    @return component-get(columns $key);
+}

@@ -1,0 +1,22 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Submit Chat Message Field
+ *
+ */
+
+&-form {
+    margin-top: chat(message margin-top);
+
+
+    &-field {
+        border-top: chat(border size) chat(border style) app(border color default);
+        padding: chat(form field padding);
+
+        @include state(hover) {
+            border-color: darken(app(border color default), 16%);
+        }
+
+        @include color-modifiers(border-color, chat(form field color modifiers), state(active, '&--{r}'));
+    }
+}

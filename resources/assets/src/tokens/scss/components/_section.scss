@@ -1,0 +1,28 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Section Configuration
+ *
+ */
+
+@include component-set(section, (
+    margin-top: (
+        modifiers: 'large' 'small',
+
+        default: size(800),
+        large: (size(800) * 2),
+        small: size(600)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function section($key) {
+    @return component-get(section $key);
+}

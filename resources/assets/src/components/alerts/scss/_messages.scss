@@ -1,0 +1,11 @@
+&-messages {
+    @include transition(transform);
+}
+
+&-message {
+    margin-top: alert(message margin-top);
+
+    &:first-child {
+        margin-top: 0;
+    }
+}

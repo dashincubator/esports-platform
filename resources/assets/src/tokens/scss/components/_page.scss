@@ -1,0 +1,33 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Page Module Configuration
+ *
+ */
+
+@include component-set(page, (
+    // 'page-header'
+    header: (
+        // 'page-header-category'
+        category: (
+            margin-bottom: size()
+        ),
+
+        // 'page-header-subtitle'
+        subtitle: (
+            margin-top: size(300)
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function page($key) {
+    @return component-get(page $key);
+}

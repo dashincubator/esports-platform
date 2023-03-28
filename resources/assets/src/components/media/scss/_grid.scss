@@ -1,0 +1,64 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Grid-Like Media List ( Similar To Youtube )
+ *
+ *  Import Within Media Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-grid {
+    margin-left: (- media(grid media margin-horizontal) / 2);
+    position: relative;
+    width: calc(100% + #{media(grid media margin-horizontal)});
+
+
+    @mixin width($count, $margin) {
+        width: calc(#{100% / $count} - #{$margin});
+    }
+
+
+    .media {
+        margin: media(grid media margin-top) (media(grid media margin-horizontal) / 2) 0;
+
+        @include breakpoint(min-width, 1500px) {
+            @include width(5, media(grid media margin-horizontal));
+
+            &:nth-child(-n+5) {
+                margin-top: 0;
+            }
+        }
+
+        @include breakpoint(between-width, 1200px 1500px) {
+            @include width(4, media(grid media margin-horizontal));
+
+            &:nth-child(-n+4) {
+                margin-top: 0;
+            }
+        }
+
+        @include breakpoint(between-width, 900px 1200px) {
+            @include width(3, media(grid media margin-horizontal));
+
+            &:nth-child(-n+3) {
+                margin-top: 0;
+            }
+        }
+
+        @include breakpoint(between-width, 600px 900px) {
+            @include width(2, media(grid media margin-horizontal));
+
+            &:nth-child(-n+2) {
+                margin-top: 0;
+            }
+        }
+
+        @include breakpoint(max-width, 600px) {
+            width: 100%;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}

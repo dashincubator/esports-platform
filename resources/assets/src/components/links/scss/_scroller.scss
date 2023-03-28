@@ -1,0 +1,89 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Horizontally Scrolling Links
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-scroller {
+    &--border {
+        &-bottom,
+        &-top {
+            &::before {
+                @include transition(border-color opacity transform);
+                border-color: inherit;
+                border-style: solid;
+                content: '';
+                z-index: 0;
+            }
+
+            .link {
+                z-index: 1;
+            }
+        }
+
+        &-bottom {
+            &::before {
+                @include position(absolute, bottom);
+                border-width: link(scroller border size) 0 0 0;
+            }
+        }
+
+        &-radius {
+            border-radius: border-radius();
+            box-shadow: box-shadow(300);
+
+            .--width-full & {
+                border-radius: 0;
+            }
+
+            @each $breakpoint in app(breakpoints) {
+                @include breakpoint(max-width, $breakpoint) {
+                    .--width-full-#{$breakpoint} & {
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+
+        &-top {
+            &::before {
+                @include position(absolute, top);
+                border-width: 0 0 link(scroller border size) 0;
+            }
+        }
+    }
+
+    &--offset {
+        @each $direction in 'bottom' 'top' {
+            &-#{$direction}.--link-height {
+                margin-#{$direction}: (- first(link(size default padding)));
+            }
+
+            @each $size in link(size modifiers) {
+                &-#{$direction}.--link-#{$size}-height {
+                    margin-#{$direction}: (- first(link(size $size padding)));
+                }
+            }
+        }
+    }
+
+    .link {
+        flex: 0 0 auto;
+        margin: 0 link(scroller margin-horizontal);
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &--button {
+            margin: 0;
+        }
+    }
+}

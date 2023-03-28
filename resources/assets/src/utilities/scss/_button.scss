@@ -1,0 +1,58 @@
+.--button {
+    @mixin css($size) {
+        // Add A Fixed Height To Parent Element Based On Size Of Button In Use
+        &-height {
+            height: button(size $size height);
+        }
+
+        &-width {
+            width: button(size $size height);
+        }
+    }
+
+    @mixin padding($direction, $size) {
+        padding-#{$direction}: button(size $size height) + app(button padding);
+        position: relative;
+
+        @each $breakpoint in app(breakpoints) {
+            @include breakpoint(max-width, $breakpoint) {
+                &-#{$breakpoint} {
+                    padding-#{$direction}: button(size $size height) + app(button padding);
+                    position: relative;
+                }
+            }
+        }
+    }
+
+
+    & {
+        @include css(default);
+    }
+
+    @each $size in button(size modifiers) {
+        &-#{$size} {
+            @include css($size);
+        }
+    }
+
+    // Add Spacer On Each Side Of Parent Element Based On Size Of Button In Use
+    @each $direction in 'top' 'right' 'bottom' 'left' {
+        &-#{$direction} {
+            @include padding($direction, 'default');
+        }
+
+        @each $size in button(size modifiers) {
+            &-#{$size}-#{$direction} {
+                @include padding($direction, $size);
+            }
+        }
+
+        @each $breakpoint in app(breakpoints) {
+            @include breakpoint(max-width, $breakpoint) {
+                &-#{$direction}-hidden-#{$breakpoint} {
+                    padding-#{$direction}: 0;
+                }
+            }
+        }
+    }
+}

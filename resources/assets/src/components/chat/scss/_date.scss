@@ -1,0 +1,30 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Chat Message Dates
+ *
+ */
+
+&-date {
+    @include size(100%, chat(border size));
+    border-top: chat(border size) chat(border style) app(border color default);
+    position: relative;
+
+    &:not(:first-child) {
+        margin-top: chat(message margin-top);
+    }
+
+    &-center {
+        @include position(absolute, center);
+        background-color: chat(background);
+        border: chat(border size) chat(border style) app(border color default);
+        box-shadow: box-shadow(), 0 0 0 size() chat(background);
+        padding: chat(date padding);
+        z-index: 1;
+
+        .text-group {
+            display: inline-flex;
+            white-space: nowrap;
+        }
+    }
+}

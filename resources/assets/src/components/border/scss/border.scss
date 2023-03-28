@@ -1,0 +1,42 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Border Component
+ *
+ */
+
+.border {
+    border-top: border(size default) solid app(border color default);
+    width: 100%;
+
+    & + &,
+    &:not(.border--first-child):first-child,
+    &:not(.border--last-child):last-child {
+        display: none;
+    }
+
+
+    @each $color in app(border color modifiers) {
+        &--#{$color} {
+            border-color: color($color 400);
+
+            &-300 {
+                border-color: color($color 300);
+            }
+
+            &-500 {
+                border-color: color($color 500);
+            }
+        }
+    }
+
+    @each $size in border(size modifiers) {
+        &--#{$size} {
+            border-top-width: border(size $size);
+        }
+    }
+
+    &--dashed {
+        border-top-style: dashed;
+    }
+}

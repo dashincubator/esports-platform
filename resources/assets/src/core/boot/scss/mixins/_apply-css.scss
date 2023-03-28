@@ -1,0 +1,12 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Convert Map To CSS Properties
+ *
+ */
+
+@mixin apply-css($map) {
+    @each $property, $value in $map {
+        #{$property}: #{$value};
+    }
+}

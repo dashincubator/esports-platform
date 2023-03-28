@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+# Origin: https://olvlvl.com/2019-06-docker-pecl-without-pecl
+
+set -e
+
+FILENAME="basename $0"
+DIR=$1
+NAME=$2
+VERSION=$3
+
+if [ -z "$NAME" ] || [ -z "$VERSION" ]; then
+    echo "usage: $FILENAME module-name module-version"
+    echo "   ie: $FILENAME redis 4.3.0" >&2
+    exit 1
+fi
+
+mkdir -p "$DIR/$NAME"
+curl -fsSL "https://pecl.php.net/get/$NAME-$VERSION.tgz" | tar xvz -C "$DIR/$NAME" --strip 1
+docker-php-ext-install $NAME

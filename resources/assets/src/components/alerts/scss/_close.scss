@@ -1,0 +1,27 @@
+&-close {
+    @include position(absolute, left);
+    @include transition(background-color transform);
+    transform: scaleX(#{alert(close width inactive) / alert(close width active)});
+    transform-origin: center left;
+    width: alert(close width active);
+    
+
+    @each $color in alert(close color modifiers) {
+        &--#{$color} {
+            background-color: color($color 400);
+
+            @include state(highlight) {
+                background-color: color($color 300);
+            }
+
+            @include state(pressed) {
+                background-color: color($color 500);
+            }
+        }
+    }
+
+
+    .icon {
+        opacity: 0;
+    }
+}

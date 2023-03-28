@@ -1,0 +1,45 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Box-Shadow
+ *
+ */
+
+@include token-set(box-shadows, (
+    300: #{
+        0 1px 2px  -1px color('black' 500, 0.040),
+        0 2px 4px  -2px color('black' 500, 0.048)
+    },
+    400: #{
+        0 2px 4px  -2px color('black' 500, 0.048),
+        0 4px 8px  -4px color('black' 500, 0.056)
+    },
+    500: #{
+        0 4px 8px  -4px color('black' 500, 0.056),
+        0 8px 16px -8px color('black' 500, 0.064)
+    }
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function box-shadow($key: token-weight(default)) {
+    @return token-get(box-shadows $key);
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+@mixin box-shadow($key: token-weight(default)) {
+    box-shadow: box-shadow($key);
+}

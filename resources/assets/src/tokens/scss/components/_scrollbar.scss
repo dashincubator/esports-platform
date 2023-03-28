@@ -1,0 +1,26 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Scrollbar Module Configuration
+ *
+ */
+
+@include component-set(scrollbar, (
+    css: (
+        background-color: color('black' 500),
+        border-radius: 1px 0 0 1px,
+        width: 4px
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function scrollbar($key) {
+    @return component-get(scrollbar $key);
+}

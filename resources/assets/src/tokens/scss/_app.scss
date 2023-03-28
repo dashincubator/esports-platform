@@ -1,0 +1,100 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Common Properties
+ *
+ *  The Following CSS/Variables Were Manually Defined In Multiple Components +
+ *  Configuration Tokens. I Decided To Merge And Pull From This Token/Config
+ *  Instead.
+ *
+ */
+
+@include token-set(app, (
+    breakpoints: 400px 600px 800px 1000px 1200px 1400px,
+
+    background: (
+        color: (
+            modifiers: 'black' 'grey'
+        )
+    ),
+
+    border: (
+        color: (
+            default: darken(color('grey' 500), 16%), 
+            modifiers: 'black' 'grey' 'white'
+        )
+    ),
+
+    button: (
+        // Adds Additional Padding To --button-{left,right}
+        padding: size(300)
+    ),
+
+    font: (
+        modifiers: 'large' 'small',
+
+        default: (
+            css: (
+                font-size: font-size(),
+                line-height: divide(icon(size default), font-size())
+            ),
+            size: font-size()
+        ),
+        large: (
+            css: (
+                font-size: font-size(500),
+                line-height: divide(icon(size default), font-size(500))
+            ),
+            size: font-size(500)
+        ),
+        small: (
+            css: (
+                font-size: font-size(300),
+                line-height: divide(icon(size default), font-size(300))
+            ),
+            size: font-size(300)
+        ),
+        tiny: (
+            css: (
+                font-size: font-size(200),
+                line-height: divide(icon(size default), font-size(200))
+            ),
+            size: font-size(200)
+        )
+    ),
+
+    half: (
+        // 'width: 100%' Set On Elements Using '--half' Below This Breakpoint
+        breakpoint: 500px
+    ),
+
+    icon: (
+        // Adds Additional Padding To --icon-{left,right}
+        padding: size(300)
+    ),
+
+    image: (
+        // Adds Additional Padding To --image-{left,right}
+        padding: size(300)
+    ),
+
+    margin-top: (
+        modifiers: 'large' 'small',
+
+        default: size(500),
+        large: size(600),
+        small: size()
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function app($key) {
+    @return token-get(app $key);
+}

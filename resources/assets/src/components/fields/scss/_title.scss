@@ -1,0 +1,21 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Field Titles
+ *
+ *  Import Within Field Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-title {
+    @include apply-css(app(font default css));
+    color: field(color text);
+    padding-right: field(required size) + field(required padding);
+    position: relative;
+    width: 100%;
+    word-wrap: break-word;
+    z-index: 1;
+
+
+    @include color-modifiers(color, field(color modifiers), '#{state(active, '.field--{r}')} &--color-active');
+}

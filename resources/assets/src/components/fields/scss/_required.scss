@@ -1,0 +1,16 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Field Required Bubble
+ *
+ */
+
+&-required {
+    @include circle(field(required size));
+    @include position(absolute, vertical);
+    content: '';
+    right: 0;
+
+
+    @include color-modifiers(background-color, field(color modifiers), '.field--{r} &');
+}

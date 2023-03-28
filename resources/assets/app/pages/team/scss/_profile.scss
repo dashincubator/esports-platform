@@ -1,0 +1,70 @@
+&-profile {
+    &-matches {
+        max-height: 410px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    &-table {
+        $copy: size(700);
+        $spacer: size(300);
+
+        &-account {
+            @include size(100%);
+            @include transition(border-color color);
+            border: border-size() solid color('grey' 500, 0.8);
+            border-radius: border-radius(500);
+            padding: 0 ($copy + $spacer) 0 $spacer;
+            position: relative;
+
+            &-copy {
+                @include size($copy, 100%);
+                background-color: color('grey' 500, 0.8);
+                border-color: color('grey' 500, 0.8);
+                border-radius: 0 inherit inherit 0;
+
+                &::after {
+                    @include position(absolute, 0 null 0 null);
+                    @include size(4px, 100%);
+                    border-bottom-right-radius: inherit;
+                    border-color: inherit;
+                    border-style: solid;
+                    border-top-right-radius: inherit;
+                    border-width: 1px 2px 1px 0px;
+                    content: '';
+                    right: ($copy - 2px);
+                }
+            }
+
+            @include state(hover) {
+                border-color: color('grey');
+                color: color('text' 300);
+                text-decoration: underline;
+
+                .team-profile-table-account-copy {
+                    background-color: color('grey');
+                    border-color: color('grey');
+                }
+            }
+
+            @include state(pressed) {
+                border-color: color('grey' 500);
+                color: color('text' 500);
+
+                .team-profile-table-account-copy {
+                    background-color: color('grey' 500);
+                    border-color: color('grey' 500);
+                }
+            }
+        }
+
+        &-arrow {
+            padding-right: size(100);
+        }
+
+        &-result {
+            width: 24px;
+        }
+    }
+}

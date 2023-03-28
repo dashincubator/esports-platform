@@ -1,0 +1,49 @@
+.--width {
+    &-auto {
+        width: auto;
+    }
+
+    &-full {
+        width: 100%;
+
+        @each $breakpoint in app(breakpoints) {
+            @include breakpoint(max-width, $breakpoint) {
+                &-#{$breakpoint} {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    @mixin half() {
+        width: 50%;
+
+        &.--margin-top {
+            width: calc(50% - #{app(margin-top default) / 2});
+
+            @each $size in app(margin-top modifiers) {
+                &-#{$size} {
+                    width: calc(50% - #{app(margin-top $size) / 2});
+                }
+            }
+        }
+
+        @include breakpoint(max-width, app(half breakpoint)) {
+            @include modifiers(app(margin-top modifiers), '&' '&.--margin-top' '&.--margin-top-{r}') {
+                width: 100%;
+            }
+        }
+    }
+
+    &-half {
+        @include half();
+
+        @each $breakpoint in app(breakpoints) {
+            @include breakpoint(max-width, $breakpoint) {
+                &-#{$breakpoint} {
+                    @include half();
+                }
+            }
+        }
+    }
+}
